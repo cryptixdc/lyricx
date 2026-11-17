@@ -47,6 +47,9 @@ nsis:
   allowToChangeInstallationDirectory: true
   installerLanguages:
     - en_US
+    - zh_CN
+    - id
+    - vi_VN
   include: build/installer.nsh
 linux:
   target:

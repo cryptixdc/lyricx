@@ -4278,7 +4278,7 @@ export default {
       }
     },
     "v0_7_29": {
-      "intro": "Welcome to 0.7.29, the Feynman Update—a major update. Personal FM gets its own radio wall, there is a new lyric style called Metaphor, and a performance check tells you how much visual quality this computer can handle.",
+      "intro": "Welcome to 1.0.0, the LYRICX Update—a major update. Personal FM gets its own radio wall, there is a new lyric style called Metaphor, and a performance check tells you how much visual quality this computer can handle.",
       "radioWall": {
         "title": "Lattice radio wall",
         "description": "In Personal FM, Lattice becomes a ring of cards: upcoming songs are question-mark cards that flip over when their turn comes. Regular queues can use it too via Wall form in Settings."

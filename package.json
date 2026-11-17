@@ -8,7 +8,7 @@
     "email": "chthollyphile@users.noreply.github.com"
   },
   "private": true,
-  "version": "0.7.29",
+  "version": "1.0.0",
   "license": "AGPL-3.0",
   "type": "module",
   "main": "electron/main.cjs",
@@ -247,7 +247,10 @@
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "installerLanguages": [
-        "en_US"
+        "en_US",
+        "zh_CN",
+        "id",
+        "vi_VN"
       ],
       "include": "build/installer.nsh"
     },

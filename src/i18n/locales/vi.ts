@@ -4278,7 +4278,7 @@ export default {
       }
     },
     "v0_7_29": {
-      "intro": "Chào mừng bạn đến với 0.7.29, Feynman Update—một bản cập nhật lớn. FM cá nhân có tường radio riêng, có kiểu lời bài hát mới tên Metaphor, và tính năng kiểm tra hiệu năng cho biết máy tính này chạy được chất lượng hình ảnh đến mức nào.",
+      "intro": "Chào mừng bạn đến với 1.0.0, LYRICX Update—một bản cập nhật lớn. FM cá nhân có tường radio riêng, có kiểu lời bài hát mới tên Metaphor, và tính năng kiểm tra hiệu năng cho biết máy tính này chạy được chất lượng hình ảnh đến mức nào.",
       "radioWall": {
         "title": "Tường radio Lattice",
         "description": "Trong FM cá nhân, Lattice trở thành một vòng thẻ: các bài sắp phát là thẻ dấu hỏi, lật lên khi đến lượt. Hàng đợi thường cũng dùng được qua mục Kiểu tường trong Cài đặt."

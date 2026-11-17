@@ -4278,7 +4278,7 @@ export default {
       }
     },
     "v0_7_29": {
-      "intro": "Selamat datang di 0.7.29, Feynman Update—sebuah pembaruan besar. FM Pribadi kini punya dinding radio sendiri, ada gaya lirik baru bernama Metaphor, dan pemeriksaan performa memberi tahu seberapa tinggi kualitas visual yang sanggup dijalankan komputer ini.",
+      "intro": "Selamat datang di 1.0.0, LYRICX Update—sebuah pembaruan besar. FM Pribadi kini punya dinding radio sendiri, ada gaya lirik baru bernama Metaphor, dan pemeriksaan performa memberi tahu seberapa tinggi kualitas visual yang sanggup dijalankan komputer ini.",
       "radioWall": {
         "title": "Dinding radio Lattice",
         "description": "Di FM Pribadi, Lattice menjadi lingkaran kartu: lagu berikutnya berupa kartu tanda tanya yang terbuka saat gilirannya tiba. Antrean biasa juga bisa memakainya lewat Bentuk dinding di Pengaturan."

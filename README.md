@@ -8,7 +8,7 @@ A beautiful, AI-themed lyric player for the desktop — built around **YouTube M
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](LICENSE)
 [![Platforms](https://img.shields.io/badge/Platforms-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)](#download)
-[![Version](https://img.shields.io/badge/version-0.7.29-7c3aed.svg)](../../releases/latest)
+[![Version](https://img.shields.io/badge/version-1.0.0-7c3aed.svg)](../../releases/latest)
 
 <br>
 
