@@ -1,0 +1,12 @@
+{
+  "appId": "top.izuna.lyricx",
+  "appName": "LYRICX",
+  "webDir": "dist",
+  "android": {
+    "allowMixedContent": true,
+    "appendUserAgent": "LYRICX-Android"
+  },
+  "server": {
+    "androidScheme": "https"
+  }
+}
