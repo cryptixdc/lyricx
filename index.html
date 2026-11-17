@@ -53,7 +53,7 @@
   .tags{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
   .tag{font-size:11px;letter-spacing:.04em;color:var(--muted);padding:7px 14px;border-radius:999px;background:var(--bg);box-shadow:var(--raised-sm)}
 
-  .downloads{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:18px 0 8px}
+  .downloads{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:18px 0 8px}
   .card{
     background:var(--bg);border-radius:26px;padding:30px 24px;text-align:center;
     box-shadow:var(--raised);border:1px solid var(--line);transition:box-shadow .25s,transform .25s;
@@ -138,7 +138,7 @@
     <div class="script">Welcome</div>
     <div class="ml" lang="ml">സ്വാഗതം</div>
     <p class="lede">Lyrics, reimagined. A quiet, considered YouTube Music player with living visualizers, multilingual typography, and a lyrics display made for your stream.</p>
-    <div class="tags"><span class="tag">Windows · macOS · Linux</span><span class="tag">YouTube Music</span><span class="tag">AGPL-3.0</span></div>
+    <div class="tags"><span class="tag">Windows · macOS · Linux · Android</span><span class="tag">YouTube Music</span><span class="tag">AGPL-3.0</span></div>
   </section>
 
   <section id="download" style="padding-top:0">
@@ -153,6 +153,12 @@
         <div class="glyph"><svg viewBox="0 0 24 24"><path d="M3 5.6 11 4.4v7H3V5.6ZM13 4.1 21 3v8h-8V4.1ZM3 12.6h8v7L3 18.4v-5.8ZM13 12h8v9l-8-1.3V12Z"/></svg></div>
         <h2>Windows</h2><p>64-bit installer</p>
         <a class="btn" id="win-main" href="#"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3h16v-3"/></svg>Download</a>
+        <div class="sub"><a href="https://github.com/cryptixdc/lyricx/releases/latest">View release</a></div>
+      </div>
+      <div class="card" data-os="android">
+        <div class="glyph"><svg viewBox="0 0 24 24"><path d="M7 9h10v7a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3V9Z"/><path d="M9 19v2m6-2v2M5 9V6a2 2 0 0 1 2-2h1m8 0h1a2 2 0 0 1 2 2v3"/><circle cx="9.5" cy="13" r=".8" fill="currentColor" stroke="none"/><circle cx="14.5" cy="13" r=".8" fill="currentColor" stroke="none"/></svg></div>
+        <h2>Android</h2><p>WebView edition</p>
+        <a class="btn" id="android-main" href="#"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3h16v-3"/></svg>Download</a>
         <div class="sub"><a href="https://github.com/cryptixdc/lyricx/releases/latest">View release</a></div>
       </div>
       <div class="card" data-os="linux">
@@ -194,7 +200,7 @@
 (function(){
   var base='https://github.com/cryptixdc/lyricx/releases/latest/download/';
   var ua=navigator.userAgent||'';
-  var os=/Windows/i.test(ua)?'windows':/Mac|iPhone|iPad/i.test(ua)?'mac':/Linux/i.test(ua)?'linux':'windows';
+  var os=/Android/i.test(ua)?'android':/Windows/i.test(ua)?'windows':/Mac|iPhone|iPad/i.test(ua)?'mac':/Linux/i.test(ua)?'linux':'windows';
   var card=document.querySelector('[data-os="'+os+'"]');
   if(card) card.classList.add('active');
   fetch('https://api.github.com/repos/cryptixdc/lyricx/releases/latest')
@@ -209,6 +215,7 @@
       set('mac-main',find(function(n){return /arm64\.dmg$/i.test(n);})||find(function(n){return /\.dmg$/i.test(n);}));
       set('mac-arm',find(function(n){return /arm64\.dmg$/i.test(n);}));
       set('mac-x64',find(function(n){return /x64\.dmg$/i.test(n);}));
+      set('android-main',find(function(n){return /android.*\.apk$/i.test(n);}));
       set('linux-main',find(function(n){return /AppImage$/i.test(n);}));
       set('linux-deb',find(function(n){return /\.deb$/i.test(n);}));
       set('linux-appimage',find(function(n){return /AppImage$/i.test(n);}));
