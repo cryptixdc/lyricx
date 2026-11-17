@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'Script';
+  src: url('assets/fonts/GreatVibes-Regular.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Malayalam';
+  src: url('assets/fonts/NotoSerifMalayalam-400.woff') format('woff');
+  font-display: swap;
+}
