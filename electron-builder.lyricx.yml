@@ -1,0 +1,62 @@
+# LYRICX release packaging.
+# Deliberately excludes the upstream native extras (Steam Audio, MNN, Apple Music companion,
+# wallpaper helpers) that are not part of this YouTube-Music-only build.
+
+appId: top.izuna.lyricx
+productName: LYRICX
+directories:
+  output: release
+files:
+  - dist/**/*
+  - electron/**/*
+  - shared/**/*
+  - package.json
+  - build/miao.png
+  - build/thumbar/*.png
+extraResources:
+  - from: build/icon.png
+    to: icon.png
+  - from: build/trayTemplate.png
+    to: trayTemplate.png
+  - from: build/trayTemplate@2x.png
+    to: trayTemplate@2x.png
+mac:
+  electronLanguages:
+    - en
+    - ml
+    - id
+    - vi
+  target:
+    - target: dmg
+      arch:
+        - x64
+        - arm64
+    - target: zip
+      arch:
+        - x64
+        - arm64
+  icon: build/icon.png
+  artifactName: ${productName}-${version}-${arch}.${ext}
+win:
+  target:
+    - nsis
+  icon: build/icon.png
+  artifactName: ${productName}-Setup-${version}.${ext}
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  installerLanguages:
+    - en_US
+  include: build/installer.nsh
+linux:
+  target:
+    - AppImage
+    - deb
+  icon: build/icon.png
+  category: AudioVideo
+  executableName: lyricx
+  artifactName: ${productName}-${version}-linux-${arch}.${ext}
+publish:
+  provider: github
+  owner: cryptixdc
+  repo: lyricx

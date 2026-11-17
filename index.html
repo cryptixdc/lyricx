@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="description" content="一个动态歌词播放器，支持 AI 主题生成" />
+    <meta name="theme-color" content="#09090b" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="LYRICX" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
+    <title>LYRICX</title>
+    <script src="/runtime-config.js"></script>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "react-i18next": "https://aistudiocdn.com/react-i18next@^16.3.5",
+    "i18next": "https://aistudiocdn.com/i18next@^25.6.3"
+  }
+}
+</script>
+    <!-- 首屏加载遮罩：内联样式，随 HTML 首帧一起绘制，不等 index.css 与 JS bundle。
+         由 src/utils/appSplash.ts 在 React 挂载后淡出并移除。 -->
+    <style>
+      /* LYRICX opening: a liquid-glass card over a drifting aurora, the mark draws itself,
+         then WELCOME arrives in cursive English and Malayalam. Inline so it paints on first frame. */
+      @font-face {
+        font-family: 'Splash Script';
+        src: url('fonts/GreatVibes-Regular.woff') format('woff');
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Splash Malayalam';
+        src: url('fonts/NotoSerifMalayalam-400.woff') format('woff');
+        font-display: swap;
+      }
+
+      html, body { background-color: #07060d; }
+
+      #app-splash {
+        position: fixed;
+        inset: 0;
+        z-index: 2147483000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background:
+          radial-gradient(1100px 700px at 50% 42%, #17102b 0%, #0b0816 55%, #07060d 100%);
+        font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+        transition: opacity 420ms ease;
+      }
+
+      #app-splash.is-hiding { opacity: 0; pointer-events: none; }
+
+      /* Two slow aurora blobs give the glass something to refract. */
+      #app-splash::before,
+      #app-splash::after {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(96px);
+        opacity: 0.42;
+        animation: lyricx-drift 7s ease-in-out infinite alternate;
+        pointer-events: none;
+      }
+      #app-splash::before { width: 460px; height: 460px; left: -9%; top: -12%; background: #6d28d9; }
+      #app-splash::after { width: 420px; height: 420px; right: -8%; bottom: -14%; background: #0891b2; animation-delay: -3.5s; }
+
+      #app-splash .app-splash-inner {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        padding: 30px 54px 32px;
+        border-radius: 30px;
+        background: linear-gradient(150deg, rgba(255,255,255,0.085), rgba(255,255,255,0.018) 55%, rgba(124,58,237,0.06));
+        border: 1px solid rgba(255,255,255,0.12);
+        box-shadow: 0 34px 90px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.18), inset 0 -1px 0 rgba(255,255,255,0.05);
+        backdrop-filter: blur(22px) saturate(140%);
+        -webkit-backdrop-filter: blur(22px) saturate(140%);
+        opacity: 0;
+        transform: translateY(10px) scale(0.985);
+        animation: lyricx-card-in 700ms cubic-bezier(0.22, 1, 0.36, 1) 120ms forwards;
+      }
+      #app-splash .app-splash-inner::before {
+        content: '';
+        position: absolute;
+        inset: 1px 1px auto 1px;
+        height: 46%;
+        border-radius: 29px 29px 60% 60% / 29px 29px 26% 26%;
+        background: linear-gradient(180deg, rgba(255,255,255,0.12), transparent);
+        pointer-events: none;
+      }
+
+      /* The mark: a glass tile with a hand-drawn L and a lyric waveform. */
+      #app-splash .splash-mark {
+        width: clamp(132px, 20vw, 188px);
+        height: auto;
+        overflow: visible;
+        filter: drop-shadow(0 12px 26px rgba(124,58,237,0.42));
+      }
+      #app-splash .splash-mark path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      #app-splash .mark-stem {
+        stroke-dasharray: 132; stroke-dashoffset: 132;
+        animation: lyricx-draw 720ms cubic-bezier(0.65,0,0.35,1) 300ms forwards;
+      }
+      #app-splash .mark-foot {
+        stroke-dasharray: 100; stroke-dashoffset: 100;
+        animation: lyricx-draw 620ms cubic-bezier(0.65,0,0.35,1) 880ms forwards;
+      }
+      #app-splash .mark-wave {
+        stroke-dasharray: 230; stroke-dashoffset: 230;
+        animation: lyricx-draw 900ms ease-in-out 1180ms forwards;
+      }
+      #app-splash .mark-shine { opacity: 0; animation: lyricx-fade 700ms ease 1500ms forwards; }
+
+      #app-splash .splash-wordmark {
+        margin-top: 2px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.62em;
+        padding-left: 0.62em;
+        color: rgba(233,228,255,0.78);
+        opacity: 0;
+        animation: lyricx-rise 650ms ease 1350ms forwards;
+      }
+
+      /* Hairline that grows between the wordmark and the greetings. */
+      #app-splash .splash-rule {
+        width: 0;
+        height: 1px;
+        margin: 9px 0 7px;
+        background: linear-gradient(90deg, transparent, rgba(167,139,250,0.85), rgba(103,232,249,0.85), transparent);
+        animation: lyricx-rule 900ms ease 1480ms forwards;
+      }
+
+      #app-splash .splash-welcome {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        line-height: 1.1;
+      }
+
+      #app-splash .welcome-en {
+        font-family: 'Splash Script', 'Brush Script MT', cursive;
+        font-size: clamp(46px, 8vw, 74px);
+        font-weight: 400;
+        letter-spacing: 0.01em;
+        background: linear-gradient(100deg, #c4b5fd 0%, #a78bfa 28%, #67e8f9 62%, #c4b5fd 100%);
+        background-size: 240% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        filter: drop-shadow(0 0 16px rgba(167,139,250,0.35));
+        opacity: 0;
+        transform: scale(0.94);
+        animation: lyricx-script 1050ms cubic-bezier(0.22,1,0.36,1) 1600ms forwards, lyricx-shimmer 4.2s linear 2200ms infinite;
+      }
+
+      #app-splash .welcome-ml {
+        font-family: 'Splash Malayalam', 'Noto Sans Malayalam', serif;
+        font-size: clamp(22px, 3.6vw, 32px);
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        background: linear-gradient(100deg, #e9d5ff 0%, #a78bfa 45%, #67e8f9 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 0 24px rgba(103,232,249,0.16);
+        opacity: 0;
+        animation: lyricx-rise 800ms ease 2050ms forwards;
+      }
+
+      @keyframes lyricx-drift {
+        from { transform: translate3d(0,0,0) scale(1); }
+        to { transform: translate3d(52px,-34px,0) scale(1.16); }
+      }
+      @keyframes lyricx-card-in {
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+      @keyframes lyricx-draw { to { stroke-dashoffset: 0; } }
+      @keyframes lyricx-fade { to { opacity: 1; } }
+      @keyframes lyricx-rise {
+        from { opacity: 0; transform: translateY(9px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes lyricx-script {
+        from { opacity: 0; transform: scale(0.9) translateY(8px); }
+        to { opacity: 1; transform: scale(1) translateY(0); }
+      }
+      @keyframes lyricx-rule { to { width: min(280px, 62vw); } }
+      @keyframes lyricx-shimmer {
+        from { background-position: 150% 0; }
+        to { background-position: -80% 0; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        #app-splash::before, #app-splash::after { animation: none; }
+        #app-splash .app-splash-inner { opacity: 1; transform: none; animation: none; }
+        #app-splash .splash-mark path,
+        #app-splash .mark-shine,
+        #app-splash .splash-wordmark,
+        #app-splash .welcome-en,
+        #app-splash .welcome-ml { opacity: 1; transform: none; animation: none; stroke-dashoffset: 0; }
+        #app-splash .splash-rule { width: min(280px, 62vw); animation: none; }
+      }
+    </style>
+
+</head>
+  <body>
+    <div id="app-splash" role="status" aria-live="polite" aria-label="Welcome to LYRICX">
+      <div class="app-splash-inner">
+        <svg class="splash-mark" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="lxCard" x1="10" y1="8" x2="210" y2="212" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#2A1C4E"/><stop offset="0.6" stop-color="#120D22"/><stop offset="1" stop-color="#0A0910"/>
+            </linearGradient>
+            <linearGradient id="lxStem" x1="70" y1="44" x2="86" y2="168" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#D8C7FF"/><stop offset="0.5" stop-color="#8B5CF6"/><stop offset="1" stop-color="#5B21B6"/>
+            </linearGradient>
+            <linearGradient id="lxFoot" x1="70" y1="168" x2="162" y2="168" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#8B5CF6"/><stop offset="0.6" stop-color="#4F46E5"/><stop offset="1" stop-color="#22D3EE"/>
+            </linearGradient>
+            <linearGradient id="lxWave" x1="44" y1="0" x2="186" y2="0" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#38BDF8" stop-opacity="0"/><stop offset="0.45" stop-color="#67E8F9"/><stop offset="1" stop-color="#A78BFA" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <rect x="6" y="6" width="208" height="208" rx="56" fill="url(#lxCard)" stroke="#4C3A7A" stroke-opacity="0.6" stroke-width="1.5"/>
+          <path d="M28 34 C28 18 41 8 58 8 H162 C190 8 212 30 212 58 V72 H28 Z" fill="#FFFFFF" fill-opacity="0.07"/>
+          <path class="mark-stem" d="M70 44 V168" stroke="url(#lxStem)" stroke-width="26"/>
+          <path class="mark-foot" d="M70 168 H162" stroke="url(#lxFoot)" stroke-width="26"/>
+          <path class="mark-wave" d="M44 138 C 62 138, 68 120, 84 120 C 100 120, 106 152, 122 152 C 138 152, 142 126, 158 126 C 170 126, 176 138, 186 138"
+                stroke="url(#lxWave)" stroke-width="5"/>
+          <path class="mark-shine" d="M79 54 V148" stroke="#FFFFFF" stroke-opacity="0.32" stroke-width="3"/>
+        </svg>
+        <div class="splash-wordmark">LYRICX</div>
+        <div class="splash-rule"></div>
+        <div class="splash-welcome">
+          <span class="welcome-en">Welcome</span>
+          <span class="welcome-ml" lang="ml">സ്വാഗതം</span>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function () {
+        try {
+          // 需要透明背景的入口不能盖遮罩：OBS 浏览器源会被直接推流捕获，
+          // Electron 的透明播放背景 / 壁纸窗口（main.cjs 传 splash=0）会在桌面上闪一个黑块。
+          var params = new URLSearchParams(window.location.search);
+          if (params.get('obs') === '1' || window.location.pathname === '/obs' || params.get('splash') === '0') {
+            var splash = document.getElementById('app-splash');
+            if (splash) {
+              splash.remove();
+            }
+            return;
+          }
+        } catch (error) {
+          // 探测失败时保留遮罩，React 挂载后仍会移除它。
+        }
+      })();
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/index.tsx"></script>
+  </body>
+</html>
