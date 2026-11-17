@@ -247,10 +247,7 @@
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "installerLanguages": [
-        "en_US",
-        "zh_CN",
-        "id",
-        "vi_VN"
+        "en_US"
       ],
       "include": "build/installer.nsh"
     },
