@@ -27,7 +27,7 @@ public class LyricHttpPlugin extends Plugin {
             return;
         }
 
-        bridge.executeOnBackgroundThread(() -> {
+        new Thread(() -> {
             HttpURLConnection connection = null;
             try {
                 connection = (HttpURLConnection) new URL(url).openConnection();
@@ -61,6 +61,6 @@ public class LyricHttpPlugin extends Plugin {
             } finally {
                 if (connection != null) connection.disconnect();
             }
-        });
+        }).start();
     }
 }
