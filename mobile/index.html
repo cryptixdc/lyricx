@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>LYRICX — Music</title>
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:'Malayalam';src:url('fonts/NotoSerifMalayalam-400.woff') format('woff');font-display:swap}
+:root{
+  --bg:#e9edf3;--ink:#2b3040;--muted:#7c8496;--accent:#6f5fb0;--cyan:#3f9fae;
+  --raised:8px 8px 18px #c8cdd6,-8px -8px 18px #ffffff;
+  --raised-sm:5px 5px 11px #ccd1da,-5px -5px 11px #ffffff;
+  --inset:inset 4px 4px 9px #c8cdd6,inset -4px -4px 9px #ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;min-height:100vh;padding-bottom:90px}
+.app{max-width:560px;margin:0 auto;padding:22px 18px 0}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px}
+.brand{display:flex;align-items:center;gap:11px;font-size:14px;font-weight:700;letter-spacing:.2em}
+.brand img{width:34px;height:34px}
+.lang{font-size:12px;font-weight:600;color:var(--accent);background:var(--bg);box-shadow:var(--raised-sm);border:0;border-radius:999px;padding:9px 15px;cursor:pointer}
+.lang:active{box-shadow:var(--inset)}
+.hero{text-align:center;margin-bottom:24px}
+.hero h1{font-size:30px;font-weight:750;letter-spacing:-.03em}
+.hero p{font-size:12.5px;color:var(--muted);margin-top:7px;line-height:1.6}
+.search{display:flex;align-items:center;gap:10px;background:var(--bg);box-shadow:var(--inset);border-radius:16px;padding:13px 16px;margin-bottom:18px}
+.search svg{width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:2;stroke-linecap:round;flex:none}
+.search input{flex:1;min-width:0;border:0;background:transparent;outline:none;font-size:14px;color:var(--ink)}
+.search input::placeholder{color:var(--muted)}
+.chips{display:flex;gap:9px;overflow-x:auto;padding-bottom:4px;margin-bottom:20px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{white-space:nowrap;font-size:12px;color:var(--muted);background:var(--bg);box-shadow:var(--raised-sm);border:0;border-radius:999px;padding:9px 15px;cursor:pointer}
+.chip:active{box-shadow:var(--inset);color:var(--accent)}
+.status{font-size:12px;color:var(--muted);text-align:center;margin:8px 0 16px;min-height:18px}
+.status.error{color:#b1526a}
+.results{display:flex;flex-direction:column;gap:13px}
+.song{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--bg);box-shadow:var(--raised-sm);border:0;border-radius:17px;padding:11px;cursor:pointer;color:inherit}
+.song:active{box-shadow:var(--inset)}
+.song img{width:56px;height:56px;border-radius:12px;object-fit:cover;background:#d8dce4;flex:none}
+.song .meta{min-width:0;flex:1}
+.song .t{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.song .s{font-size:11.5px;color:var(--muted);margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.song .play{width:34px;height:34px;border-radius:50%;box-shadow:var(--inset);display:grid;place-items:center;flex:none;color:var(--accent)}
+.song .play svg{width:14px;height:14px;fill:currentColor}
+.player{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-radius:24px 24px 0 0;box-shadow:0 -12px 34px rgba(40,40,60,.16);padding:14px 16px calc(16px + env(safe-area-inset-bottom));transform:translateY(110%);transition:transform .28s cubic-bezier(.22,1,.36,1);z-index:20;max-width:560px;margin:0 auto}
+.player.open{transform:translateY(0)}
+.player .bar{width:42px;height:4px;border-radius:4px;background:#c8cdd6;margin:0 auto 13px}
+.player .row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.player .name{font-size:13px;font-weight:650;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.player .close{border:0;background:var(--bg);box-shadow:var(--raised-sm);color:var(--muted);border-radius:50%;width:32px;height:32px;font-size:16px;cursor:pointer;flex:none}
+.frame{width:100%;aspect-ratio:16/9;border:0;border-radius:14px;background:#111}
+.external{display:block;text-align:center;text-decoration:none;font-size:12px;font-weight:600;color:var(--accent);margin-top:12px;padding:11px;border-radius:12px;box-shadow:var(--raised-sm)}
+.external:active{box-shadow:var(--inset)}
+.foot{text-align:center;font-size:11px;color:var(--muted);margin-top:28px;line-height:1.8}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="brand"><img src="logo.svg" alt="">LYRICX</div>
+    <button class="lang" id="lang">EN</button>
+  </header>
+
+  <div class="hero">
+    <h1 id="headline">Music, simply.</h1>
+    <p id="subline">Search YouTube Music and play in a clean, quiet player.</p>
+  </div>
+
+  <div class="search">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
+    <input id="q" type="search" autocomplete="off" placeholder="Search songs, artists, albums" aria-label="Search">
+  </div>
+
+  <div class="chips">
+    <button class="chip" data-q="malayalam hits">Malayalam</button>
+    <button class="chip" data-q="english chartbusters">English</button>
+    <button class="chip" data-q="lofi">Lo-fi</button>
+    <button class="chip" data-q="bollywood hits">Bollywood</button>
+  </div>
+
+  <div class="status" id="status"></div>
+  <div class="results" id="results"></div>
+  <p class="foot" id="foot">Made with care for people who love lyrics.</p>
+</div>
+
+<div class="player" id="player">
+  <div class="bar"></div>
+  <div class="row">
+    <div class="name" id="pname"></div>
+    <button class="close" id="pclose" aria-label="Close player">×</button>
+  </div>
+  <iframe class="frame" id="frame" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+  <a class="external" id="pexternal" href="#" target="_blank" rel="noopener">Open in YouTube Music</a>
+</div>
+
+<script>
+(function(){
+  var KEY='AIzaSyC9XL3ZjWddXya6X74dJoCT5t9kgJqak';
+  var lang='en';
+  var I={en:{head:'Music, simply.',sub:'Search YouTube Music and play in a clean, quiet player.',ph:'Search songs, artists, albums',external:'Open in YouTube Music',foot:'Made with care for people who love lyrics.',searching:'Searching…',none:'No songs found. Try another search.',error:'Could not reach YouTube Music. Check your connection.',open:'Play in YouTube Music'},
+    ml:{head:'സംഗീതം, ലളിതമായി.',sub:'YouTube Music-ൽ തിരയുക, ശാന്തമായൊരു പ്ലേയറിൽ ആസ്വദിക്കുക.',ph:'പാട്ടുകൾ, കലാകാരന്മാർ, ആൽബങ്ങൾ തിരയുക',external:'YouTube Music-ൽ തുറക്കുക',foot:'വരികളെ സ്നേഹിക്കുന്നവർക്കായി.',searching:'തിരയുന്നു…',none:'പാട്ടുകൾ കണ്ടെത്തിയില്ല. വേറൊരു തിരയൽ ശ്രമിക്കുക.',error:'YouTube Music-ലേക്ക് എത്താൻ കഴിഞ്ഞില്ല. കണക്ഷൻ പരിശോധിക്കുക.',open:'YouTube Music-ൽ പ്ലേ ചെയ്യുക'}};
+  var $=function(id){return document.getElementById(id)};
+  function applyLang(){
+    var d=I[lang]; $('headline').textContent=d.head; $('subline').textContent=d.sub;
+    $('q').placeholder=d.ph; $('pexternal').textContent=d.external; $('foot').textContent=d.foot;
+    $('lang').textContent=lang==='en'?'ML':'EN';
+  }
+  $('lang').addEventListener('click',function(){lang=lang==='en'?'ml':'en';applyLang()});
+  applyLang();
+
+  function txt(x){return x&&x.runs?x.runs.map(function(r){return r.text}).join(''):(x&&x.simpleText)||''}
+  function collect(o,out){
+    if(!o||typeof o!=='object')return;
+    if(Array.isArray(o)){o.forEach(function(v){collect(v,out)});return}
+    Object.keys(o).forEach(function(k){if(k==='musicResponsiveListItemRenderer')out.push(o[k]);else collect(o[k],out)});
+  }
+  function parse(raw){
+    var data=JSON.parse(raw),r=[],i,songs=[];
+    collect(data,r);
+    for(i=0;i<r.length;i++){
+      var it=r[i],fc=it.flexColumns||[],first=fc[0]&&fc[0].musicResponsiveListItemFlexColumnRenderer||{};
+      var runs=first.text&&first.text.runs||[];
+      var id=it.playlistItemData&&it.playlistItemData.videoId||(runs[0]&&runs[0].navigationEndpoint&&runs[0].navigationEndpoint.watchEndpoint&&runs[0].navigationEndpoint.watchEndpoint.videoId);
+      var title=txt(first.text);
+      if(!id||!title)continue;
+      var sub=txt(fc[1]&&fc[1].musicResponsiveListItemFlexColumnRenderer&&fc[1].musicResponsiveListItemFlexColumnRenderer.text);
+      var len=txt(fc[2]&&fc[2].musicResponsiveListItemFlexColumnRenderer&&fc[2].musicResponsiveListItemFlexColumnRenderer.text);
+      var th=(it.thumbnail&&it.thumbnail.musicThumbnailRenderer&&it.thumbnail.musicThumbnailRenderer.thumbnail&&it.thumbnail.musicThumbnailRenderer.thumbnail.thumbnails)||[];
+      songs.push({id:id,title:title,sub:sub+(len?' · '+len:''),thumb:th.length?th[th.length-1].url:''});
+    }
+    return songs.slice(0,25);
+  }
+  async function post(url,body){
+    var plugin=window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.LyricHttp;
+    if(plugin){var r=await plugin.post({url:url,body:body});return r.body}
+    var res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:body});
+    return await res.text();
+  }
+  async function search(q){
+    if(!q||!q.trim())return;
+    $('status').className='status';$('status').textContent=I[lang].searching;
+    $('results').innerHTML='';
+    try{
+      var payload={context:{client:{clientName:'WEB_REMIX',clientVersion:'1.20250310.01.00',hl:lang==='ml'?'ml':'en',gl:'IN'}},query:q.trim()};
+      var raw=await post('https://music.youtube.com/youtubei/v1/search?key='+KEY+'&prettyPrint=false',JSON.stringify(payload));
+      var songs=parse(raw);
+      if(!songs.length){$('status').textContent=I[lang].none;return}
+      $('status').textContent='';
+      songs.forEach(function(s){
+        var b=document.createElement('button');b.className='song';
+        b.innerHTML='<img src="'+s.thumb+'" alt=""><div class="meta"><div class="t"></div><div class="s"></div></div><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>';
+        b.querySelector('.t').textContent=s.title;b.querySelector('.s').textContent=s.sub;
+        b.addEventListener('click',function(){play(s)});
+        $('results').appendChild(b);
+      });
+    }catch(e){$('status').className='status error';$('status').textContent=I[lang].error}
+  }
+  function play(s){
+    $('pname').textContent=s.title;
+    $('frame').src='https://www.youtube.com/embed/'+encodeURIComponent(s.id)+'?autoplay=1&playsinline=1&rel=0';
+    $('pexternal').href='https://music.youtube.com/watch?v='+encodeURIComponent(s.id);
+    $('player').classList.add('open');
+  }
+  $('pclose').addEventListener('click',function(){$('player').classList.remove('open');$('frame').src=''});
+  $('q').addEventListener('keydown',function(e){if(e.key==='Enter')search(this.value)});
+  Array.prototype.forEach.call(document.querySelectorAll('.chip'),function(c){c.addEventListener('click',function(){search(c.dataset.q)})});
+  search('malayalam hits');
+})();
+</script>
+</body>
+</html>

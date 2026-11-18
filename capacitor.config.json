@@ -1,7 +1,7 @@
 {
   "appId": "top.izuna.lyricx",
   "appName": "LYRICX",
-  "webDir": "dist",
+  "webDir": "mobile",
   "android": {
     "allowMixedContent": true,
     "cleartext": true,

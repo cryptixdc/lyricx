@@ -32,19 +32,6 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
-      - name: Build web renderer
-        run: npx vite build
-        env:
-          VITE_YTM_ONLY: 'true'
-          VITE_MOBILE: 'true'
-          ELECTRON_DEV: 'false'
-          ELECTRON: 'false'
-
-      - name: Remove service worker for the WebView
-        run: |
-          rm -f dist/registerSW.js
-          node -e "const fs=require('fs');const p='dist/index.html';let t=fs.readFileSync(p,'utf8');t=t.replace(/<script id=\"vite-plugin-pwa:register-sw\"[^>]*><\\/script>/g,'');fs.writeFileSync(p,t);"
-
       - name: Sync Capacitor
         run: npx cap sync android
 
