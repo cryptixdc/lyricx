@@ -4,9 +4,10 @@
   "webDir": "dist",
   "android": {
     "allowMixedContent": true,
+    "cleartext": true,
     "appendUserAgent": "LYRICX-Android"
   },
   "server": {
-    "androidScheme": "https"
+    "androidScheme": "http"
   }
 }
