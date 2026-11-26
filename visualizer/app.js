@@ -153,8 +153,10 @@
         if (changed || (next.progressMs && Math.abs(next.progressMs - externalPositionMs) > 1200)) {
             externalPositionMs = next.progressMs;
             externalPositionAt = Date.now();
+            positionMs = externalPositionMs;
+        } else if (!next.playing) {
+            positionMs = externalPositionMs;
         }
-        positionMs = externalPositionMs;
         playing = next.playing;
         track = next;
         renderStatus();
