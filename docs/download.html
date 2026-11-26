@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download — LYRICX</title>
+<meta name="description" content="Download LYRICX 1.0.0 for Windows, macOS, Linux and Android. Direct installers from GitHub Releases, plus Android setup steps.">
+<link rel="canonical" href="https://cryptixdc.github.io/download.html">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts.css">
+<script>try{var t=localStorage.getItem('lyricx-site-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);if(sessionStorage.getItem('lyricx-booted')==='1')document.documentElement.classList.add('booted');}catch(e){}</script>
+<link rel="stylesheet" href="styles.css?v=8">
+</head>
+<body>
+
+<div class="crt" aria-hidden="true"><span class="scan"></span><span class="vignette"></span></div>
+
+<div class="boot" id="boot" aria-hidden="true">
+  <div class="boot-box">
+    <div class="boot-logo">LYRICX<span class="cursor">_</span></div>
+    <div class="boot-lines" id="bootLines"></div>
+    <div class="boot-bar"><i></i></div>
+    <p class="boot-hint">LOADING MUSIC UNIVERSE…</p>
+  </div>
+</div>
+
+<header class="hud">
+  <nav class="hud-inner" aria-label="Main navigation">
+    <a class="hud-brand" href="index.html"><span class="pixel-logo" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>LYRICX</span></a>
+    <div class="hud-links" id="hudLinks">
+      <a href="index.html">HOME</a>
+      <a href="music.html">MUSIC</a>
+      <a href="about.html">ABOUT</a>
+      <a href="download.html" class="active" aria-current="page">DOWNLOAD</a>
+    </div>
+    <div class="hud-actions">
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle light and dark theme" title="Toggle theme">
+        <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M19 5l-2 2M7 17l-2 2"/></svg>
+      </button>
+      <a href="https://github.com/cryptixdc/lyricx/releases" class="start-btn magnetic" target="_blank" rel="noopener">RELEASES ▶</a>
+      <button class="hud-menu" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="page-hero">
+    <div class="particles" id="particles" aria-hidden="true"></div>
+    <div class="page-hero-inner">
+      <p class="tag">// SYSTEM SELECT</p>
+      <h1 class="glitch" data-text="CHOOSE YOUR SYSTEM">CHOOSE YOUR <span class="neon">SYSTEM</span></h1>
+      <p class="page-sub">Pick your platform and install LYRICX 1.0.0. Direct builds from GitHub Releases, plus a guided Android setup.</p>
+      <div class="page-meta"><span>VERSION 1.0.0</span><span>4 PLATFORMS</span><span>OPEN SOURCE</span><span>AGPL-3.0</span></div>
+    </div>
+  </section>
+
+  <!-- APP INSTALLERS -->
+  <section class="section" id="app">
+    <div class="section-head reveal">
+      <p class="tag">// LYRICX INSTALLERS</p>
+      <h2>GET THE <span class="neon">APP</span></h2>
+      <p>Direct downloads from the v1.0.0 release. No mirrors, no fake installers.</p>
+    </div>
+
+    <div class="app-grid" id="appGrid">
+      <div class="app-card reveal" data-os="windows">
+        <div class="app-card-top">
+          <img src="assets/os/windows.svg" alt="Windows logo">
+          <span class="app-badge">v1.0.0</span>
+        </div>
+        <h3>WINDOWS</h3>
+        <p>Windows 10 / 11 · 64-bit</p>
+        <a class="os-btn" href="https://github.com/cryptixdc/lyricx/releases/download/v1.0.0/LYRICX-Setup-1.0.0.exe" target="_blank" rel="noopener">DOWNLOAD .EXE</a>
+        <span class="app-file">149 MB · NSIS installer</span>
+      </div>
+
+      <div class="app-card reveal" data-os="macos">
+        <div class="app-card-top">
+          <img src="assets/os/apple.svg" alt="Apple logo">
+          <span class="app-badge">v1.0.0</span>
+        </div>
+        <h3>MACOS</h3>
+        <p>Apple Silicon &amp; Intel</p>
+        <div class="btn-stack">
+          <a class="os-btn" href="https://github.com/cryptixdc/lyricx/releases/download/v1.0.0/LYRICX-1.0.0-arm64.dmg" target="_blank" rel="noopener">APPLE SILICON .DMG</a>
+          <a class="os-btn alt" href="https://github.com/cryptixdc/lyricx/releases/download/v1.0.0/LYRICX-1.0.0-x64.dmg" target="_blank" rel="noopener">INTEL .DMG</a>
+        </div>
+        <span class="app-file">170 / 174 MB · ad-hoc signed</span>
+      </div>
+
+      <div class="app-card reveal" data-os="linux">
+        <div class="app-card-top">
+          <img src="assets/os/linux.svg" alt="Linux logo">
+          <span class="app-badge">v1.0.0</span>
+        </div>
+        <h3>LINUX</h3>
+        <p>AppImage &amp; Debian package</p>
+        <div class="btn-stack">
+          <a class="os-btn" href="https://github.com/cryptixdc/lyricx/releases/download/v1.0.0/LYRICX-1.0.0-linux-x86_64.AppImage" target="_blank" rel="noopener">DOWNLOAD .APPIMAGE</a>
+          <a class="os-btn alt" href="https://github.com/cryptixdc/lyricx/releases/download/v1.0.0/LYRICX-1.0.0-linux-amd64.deb" target="_blank" rel="noopener">DOWNLOAD .DEB</a>
+        </div>
+        <span class="app-file">190 / 148 MB · x86_64</span>
+      </div>
+
+      <div class="app-card android reveal" data-os="android">
+        <div class="app-card-top">
+          <img src="assets/os/android.svg" alt="Android logo">
+          <span class="app-badge">v1.0.0</span>
+        </div>
+        <h3>ANDROID</h3>
+        <p>Android 8.0+ · Phone app</p>
+        <a class="os-btn" href="https://github.com/cryptixdc/lyricx/releases/download/v1.0.0/LYRICX-1.0.0-android.apk" target="_blank" rel="noopener">DOWNLOAD .APK</a>
+        <span class="app-file">4 MB · debug-signed sideload</span>
+      </div>
+    </div>
+
+    <div class="app-note reveal">
+      <span class="blink-label">● ALL BUILDS · VERSION 1.0.0</span>
+      <a href="https://github.com/cryptixdc/lyricx/releases" target="_blank" rel="noopener">BROWSE EVERY RELEASE ON GITHUB ↗</a>
+    </div>
+  </section>
+
+  <!-- ANDROID SETUP -->
+  <section class="section" id="android">
+    <div class="android-panel reveal">
+      <div class="android-copy">
+        <p class="tag">// ANDROID SETUP</p>
+        <h2>LYRICX ON <span class="neon">ANDROID.</span></h2>
+        <p class="about-text">A dedicated phone app, not a wrapped desktop window. It finds tracks on YouTube Music through a native bridge, plays through the official embed and includes a Malayalam / English switch.</p>
+        <ol class="steps">
+          <li><span>01</span><div><strong>DOWNLOAD THE APK</strong><p>Tap the Android download button above and wait for the 4 MB file.</p></div></li>
+          <li><span>02</span><div><strong>ALLOW THE INSTALL</strong><p>When Android asks, allow installs from your browser or file manager.</p></div></li>
+          <li><span>03</span><div><strong>OPEN AND PLAY</strong><p>Launch LYRICX, find a track on YouTube Music and press play.</p></div></li>
+        </ol>
+        <div class="note-warning">
+          <strong>HEADS UP:</strong> the APK is debug-signed, so Android may show “unsafe app blocked”. Tap <em>More details → Install anyway</em>. Android 8.0 or newer is required. Playback uses the official YouTube embed; if a track is blocked in-app, use the “Open in YouTube Music” button.
+        </div>
+        <a class="arcade-btn primary magnetic" href="https://github.com/cryptixdc/lyricx/releases/download/v1.0.0/LYRICX-1.0.0-android.apk" target="_blank" rel="noopener">DOWNLOAD ANDROID APK ▶</a>
+      </div>
+      <div class="phone-frame" aria-hidden="true">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <p class="phone-brand">LYRICX</p>
+          <div class="phone-eq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <p class="phone-track">BLINDING LIGHTS</p>
+          <p class="phone-artist">THE WEEKND</p>
+          <div class="phone-bar"><i></i></div>
+          <span class="phone-chip">ML / EN</span>
+          <span class="phone-note">YOUTUBE MUSIC</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFICIAL OS PAGES -->
+  <section class="section" id="systems">
+    <div class="section-head reveal">
+      <p class="tag">// OFFICIAL OPERATING SYSTEMS</p>
+      <h2>NEED THE <span class="neon">SYSTEM?</span></h2>
+      <p>These buttons go to the official operating-system download pages, not to LYRICX installers.</p>
+    </div>
+    <div class="os-grid reveal">
+      <a class="os-card" href="https://www.microsoft.com/en-us/software-download/windows11" target="_blank" rel="noopener">
+        <img src="assets/os/windows.svg" alt="Windows logo">
+        <h3>WINDOWS</h3><p>WINDOWS 11</p>
+        <span class="os-btn">DOWNLOAD FOR WINDOWS</span>
+      </a>
+      <a class="os-card" href="https://www.linux.org/pages/download/" target="_blank" rel="noopener">
+        <img src="assets/os/linux.svg" alt="Linux logo">
+        <h3>LINUX</h3><p>LINUX DISTRIBUTIONS</p>
+        <span class="os-btn">DOWNLOAD FOR LINUX</span>
+      </a>
+      <a class="os-card" href="https://ubuntu.com/download/desktop" target="_blank" rel="noopener">
+        <img src="assets/os/ubuntu.svg" alt="Ubuntu logo">
+        <h3>UBUNTU</h3><p>UBUNTU DESKTOP</p>
+        <span class="os-btn">DOWNLOAD FOR UBUNTU</span>
+      </a>
+      <a class="os-card" href="https://www.apple.com/macos/" target="_blank" rel="noopener">
+        <img src="assets/os/apple.svg" alt="Apple logo">
+        <h3>MACOS</h3><p>APPLE MACINTOSH</p>
+        <span class="os-btn">DOWNLOAD FOR macOS</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="cta-band reveal">
+      <div>
+        <p class="tag">// STILL HERE?</p>
+        <h2>GO FIND YOUR <span class="neon">NEXT SOUND.</span></h2>
+        <p>The collection is waiting. Twelve tracks, real artwork, official destinations.</p>
+      </div>
+      <a href="music.html" class="arcade-btn primary magnetic">EXPLORE MUSIC ▶</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <h2 class="glitch" data-text="THANKS FOR PLAYING.">THANKS FOR PLAYING.</h2>
+      <h3 class="neon">KEEP THE MUSIC ALIVE.</h3>
+    </div>
+    <div class="footer-grid">
+      <div><h4>LYRICX</h4><a href="index.html">HOME</a><a href="music.html">MUSIC</a><a href="download.html">DOWNLOADS</a><a href="about.html">ABOUT</a></div>
+      <div><h4>LINKS</h4><a href="https://github.com/cryptixdc/lyricx" target="_blank" rel="noopener">GITHUB ↗</a><a href="https://github.com/cryptixdc/lyricx/releases" target="_blank" rel="noopener">RELEASES ↗</a><a href="https://github.com/cryptixdc/lyricx/issues" target="_blank" rel="noopener">ISSUES ↗</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span id="year"></span> LYRICX — ALL RIGHTS RESERVED.</span>
+    <button id="backTop">▲ BACK TO TOP</button>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js?v=8"></script>
+</body>
+</html>

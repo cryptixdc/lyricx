@@ -7,15 +7,15 @@
 A beautiful, AI-themed lyric player for the desktop — built around **YouTube Music**.
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](LICENSE)
-[![Platforms](https://img.shields.io/badge/Platforms-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)](#download)
+[![Platforms](https://img.shields.io/badge/Platforms-Windows%20%7C%20macOS%20%7C%20Linux%20%7C%20Android-lightgrey.svg)](#download)
 [![Version](https://img.shields.io/badge/version-1.0.0-7c3aed.svg)](../../releases/latest)
 
 <br>
 
-| [<img src="docs/assets/apple.svg" width="34" alt="macOS"><br>**macOS**<br><sub>Apple Silicon & Intel</sub>](../../releases/latest) | [<img src="docs/assets/windows.svg" width="32" alt="Windows"><br>**Windows**<br><sub>64-bit installer</sub>](../../releases/latest) | [<img src="docs/assets/linux.svg" width="34" alt="Linux"><br>**Linux**<br><sub>AppImage & .deb</sub>](../../releases/latest) |
-|:---:|:---:|:---:|
+| [<img src="docs/assets/apple.svg" width="34" alt="macOS"><br>**macOS**<br><sub>Apple Silicon & Intel</sub>](../../releases/latest) | [<img src="docs/assets/windows.svg" width="32" alt="Windows"><br>**Windows**<br><sub>64-bit installer</sub>](../../releases/latest) | [<img src="docs/assets/linux.svg" width="34" alt="Linux"><br>**Linux**<br><sub>AppImage & .deb</sub>](../../releases/latest) | [<img src="docs/assets/os/android.svg" width="30" alt="Android"><br>**Android**<br><sub>APK sideload</sub>](https://github.com/cryptixdc/lyricx/releases/download/v1.0.0/LYRICX-1.0.0-android.apk) |
+|:---:|:---:|:---:|:---:|
 
-**[Download the latest release →](../../releases/latest)** · **[Visit the download page →](../..)**
+**[Download the latest release →](../../releases/latest)** · **[Visit the website →](https://cryptixdc.github.io/)**
 
 </div>
 
@@ -41,8 +41,11 @@ Grab the installer for your platform from the [latest release](../../releases/la
 | macOS (Apple Silicon) | `LYRICX-*-arm64.dmg` |
 | macOS (Intel) | `LYRICX-*-x64.dmg` |
 | Linux | `LYRICX-*.AppImage`, `*.deb` |
+| Android | `LYRICX-*-android.apk` |
 
 > **macOS tip:** the build is ad-hoc signed. If macOS blocks it, right-click the app → **Open** → **Open** again.
+
+> **Android tip:** the APK is debug-signed. Allow installs from your browser or file manager, then install. Playback uses the official YouTube embed.
 
 ## 🛠️ Building from source
 
@@ -64,7 +67,7 @@ The `VITE_YTM_ONLY=true` flag makes the build register only the YouTube Music pr
 
 - `src/` — renderer: UI, visualizers, i18n, stores, services
 - `electron/` — main process, native IPC, tray, updater
-- `docs/` — GitHub Pages download site
+- `docs/` — four-page LYRICX website: home, music, about, download
 - `.github/workflows/` — cross-platform release builds
 
 ## 📄 License

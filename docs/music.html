@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music — LYRICX</title>
+<meta name="description" content="Twelve curated English tracks with official album artwork. Pick a card and open the official track on YouTube Music.">
+<link rel="canonical" href="https://cryptixdc.github.io/music.html">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts.css">
+<script>try{var t=localStorage.getItem('lyricx-site-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);if(sessionStorage.getItem('lyricx-booted')==='1')document.documentElement.classList.add('booted');}catch(e){}</script>
+<link rel="stylesheet" href="styles.css?v=8">
+</head>
+<body>
+
+<div class="crt" aria-hidden="true"><span class="scan"></span><span class="vignette"></span></div>
+
+<div class="boot" id="boot" aria-hidden="true">
+  <div class="boot-box">
+    <div class="boot-logo">LYRICX<span class="cursor">_</span></div>
+    <div class="boot-lines" id="bootLines"></div>
+    <div class="boot-bar"><i></i></div>
+    <p class="boot-hint">LOADING MUSIC UNIVERSE…</p>
+  </div>
+</div>
+
+<header class="hud">
+  <nav class="hud-inner" aria-label="Main navigation">
+    <a class="hud-brand" href="index.html"><span class="pixel-logo" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>LYRICX</span></a>
+    <div class="hud-links" id="hudLinks">
+      <a href="index.html">HOME</a>
+      <a href="music.html" class="active" aria-current="page">MUSIC</a>
+      <a href="about.html">ABOUT</a>
+      <a href="download.html">DOWNLOAD</a>
+    </div>
+    <div class="hud-actions">
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle light and dark theme" title="Toggle theme">
+        <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M19 5l-2 2M7 17l-2 2"/></svg>
+      </button>
+      <a href="download.html" class="start-btn magnetic">GET APP ▶</a>
+      <button class="hud-menu" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="page-hero">
+    <div class="particles" id="particles" aria-hidden="true"></div>
+    <div class="page-hero-inner">
+      <p class="tag">// LEVEL 01 — THE COLLECTION</p>
+      <h1 class="glitch" data-text="SELECT YOUR SOUND">SELECT YOUR <span class="neon">SOUND</span></h1>
+      <p class="page-sub">Twelve curated English tracks. Real artwork. Official destinations. No filler, no noise.</p>
+      <div class="page-meta"><span>12 TRACKS</span><span>ENGLISH ONLY</span><span>OFFICIAL ARTWORK</span></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="inventory" id="inventory"></div>
+    <div class="info-strip reveal">
+      <p><span class="prompt">&gt;</span> EVERY CARD OPENS THE OFFICIAL TRACK ON YOUTUBE MUSIC.</p>
+      <p><span class="prompt">&gt;</span> NO FAKE PLAYBACK. NO CLUTTER. JUST MUSIC.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="cta-band reveal">
+      <div>
+        <p class="tag">// WANT THE FULL EXPERIENCE?</p>
+        <h2>PLAY IT ON YOUR <span class="neon">SYSTEM.</span></h2>
+        <p>LYRICX is available for Windows, macOS, Linux and Android.</p>
+      </div>
+      <a href="download.html" class="arcade-btn primary magnetic">GET THE APP ▶</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <h2 class="glitch" data-text="THANKS FOR PLAYING.">THANKS FOR PLAYING.</h2>
+      <h3 class="neon">KEEP THE MUSIC ALIVE.</h3>
+    </div>
+    <div class="footer-grid">
+      <div><h4>LYRICX</h4><a href="index.html">HOME</a><a href="music.html">MUSIC</a><a href="download.html">DOWNLOADS</a><a href="about.html">ABOUT</a></div>
+      <div><h4>LINKS</h4><a href="https://github.com/cryptixdc/lyricx" target="_blank" rel="noopener">GITHUB ↗</a><a href="https://github.com/cryptixdc/lyricx/releases" target="_blank" rel="noopener">RELEASES ↗</a><a href="https://github.com/cryptixdc/lyricx/issues" target="_blank" rel="noopener">ISSUES ↗</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span id="year"></span> LYRICX — ALL RIGHTS RESERVED.</span>
+    <button id="backTop">▲ BACK TO TOP</button>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js?v=8"></script>
+</body>
+</html>
