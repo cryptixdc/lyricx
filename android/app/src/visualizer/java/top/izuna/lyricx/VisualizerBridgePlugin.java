@@ -32,13 +32,14 @@ public class VisualizerBridgePlugin extends Plugin {
 
     /** Called by the notification listener whenever Spotify's media session changes. */
     static void publishTrack(JSObject track) {
-        SharedPreferences prefs = null;
         VisualizerBridgePlugin plugin = instance.get();
-        if (plugin != null) {
-            prefs = plugin.getContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        if (plugin == null) return;
+        // Capacitor's listener maps live on the bridge thread; hop there before touching them.
+        plugin.execute(() -> {
+            SharedPreferences prefs = plugin.getContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+            prefs.edit().putString(LAST_TRACK, track.toString()).apply();
             plugin.notifyListeners("nowPlaying", track, true);
-        }
-        if (prefs != null) prefs.edit().putString(LAST_TRACK, track.toString()).apply();
+        });
     }
 
     @Override

@@ -5,7 +5,10 @@
     var $ = function (id) { return document.getElementById(id); };
     var i18n = window.LXVisI18n;
     var lrc = window.LXVisLrc;
-    var androidBridge = window.VisualizerBridge || null;
+    // Capacitor registers plugins under window.Capacitor.Plugins, not as standalone globals.
+    var androidBridge = window.Capacitor && window.Capacitor.Plugins
+        ? window.Capacitor.Plugins.VisualizerBridge || null
+        : null;
     var desktopBridge = window.visualizerBridge || null;
     var isAndroid = Boolean(androidBridge);
     var isDesktop = Boolean(desktopBridge);
@@ -14,9 +17,11 @@
     var lyrics = [];
     var trackKey = '';
     var positionMs = 0;
-    var positionUpdatedAt = 0;
+    var externalPositionMs = 0;
+    var externalPositionAt = 0;
     var playing = false;
     var lastError = '';
+    var sourceStatus = 'connecting';
     var audio = null;
     var loopbackActive = false;
     var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -55,7 +60,7 @@
     }
 
     function renderStatus() {
-        if (lastError) { setStatus(t('error'), 'error'); return; }
+        if (lastError || sourceStatus === 'error') { setStatus(t('error'), 'error'); return; }
         setStatus(track ? t('listening') : t('waiting'), track ? 'ok' : '');
     }
 
@@ -145,13 +150,11 @@
         var next = normalizeTrack(raw);
         if (!next) return;
         var changed = !track || keyOf(next) !== keyOf(track);
-        if (changed) {
-            positionMs = next.progressMs;
-            positionUpdatedAt = Date.now();
-        } else if (next.progressMs && Math.abs(next.progressMs - positionMs) > 1200) {
-            positionMs = next.progressMs;
-            positionUpdatedAt = Date.now();
+        if (changed || (next.progressMs && Math.abs(next.progressMs - externalPositionMs) > 1200)) {
+            externalPositionMs = next.progressMs;
+            externalPositionAt = Date.now();
         }
+        positionMs = externalPositionMs;
         playing = next.playing;
         track = next;
         renderStatus();
@@ -164,10 +167,12 @@
         var promise = isAndroid ? androidBridge.getNowPlaying() : desktopBridge.getTrack();
         Promise.resolve(promise).then(function (raw) {
             lastError = '';
+            sourceStatus = raw && raw.status ? raw.status : 'connected';
             renderStatus();
             updateTrack(raw);
         }).catch(function (error) {
             lastError = String(error && error.message || error || 'now-playing unavailable');
+            sourceStatus = 'error';
             renderStatus();
         });
     }
@@ -252,12 +257,9 @@
             window.requestAnimationFrame(frame);
             return;
         }
-        if (playing && track) {
-            var elapsed = Date.now() - positionUpdatedAt;
-            if (elapsed < 8000) {
-                positionMs = Math.min(track.durationMs || Infinity, positionMs + Math.max(0, elapsed - 600));
-                positionUpdatedAt = Date.now();
-            }
+        if (track && externalPositionAt) {
+            positionMs = externalPositionMs + (playing ? Math.max(0, Date.now() - externalPositionAt) : 0);
+            if (track.durationMs > 0) positionMs = Math.min(positionMs, track.durationMs);
         }
         if (++frameSkip % 2 === 0) {
             var levels = null;
@@ -311,7 +313,13 @@
     } else if (isDesktop) {
         setupLoopbackAudio();
         if (desktopBridge.onTrack) {
-            desktopBridge.onTrack(function (value) { updateTrack(value); });
+            desktopBridge.onTrack(function (value) {
+                sourceStatus = value && value.status ? value.status : 'connected';
+                updateTrack(value);
+            });
+        }
+        if (desktopBridge.onStatus) {
+            desktopBridge.onStatus(function (value) { sourceStatus = value; renderStatus(); });
         }
     }
 

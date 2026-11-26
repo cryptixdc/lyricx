@@ -169,7 +169,11 @@ app.whenReady().then(() => {
     createWindow();
     connect();
     app.on('activate', () => {
-        if (BrowserWindow.getAllWindows().length === 0) createWindow();
+        if (BrowserWindow.getAllWindows().length === 0) {
+            stopped = false;
+            createWindow();
+            connect();
+        }
     });
 });
 

@@ -87,7 +87,7 @@ To build the Visualizer edition instead:
 # Desktop (plain HTML/CSS/JS — no renderer build needed)
 npx electron-builder --config electron-builder.visualizer.yml --win --x64
 
-# Android (copy the visualizer web assets, then build the flavor)
+# Android — do this in a separate checkout: it replaces the YTM web assets in place
 cp -R visualizer/. android/app/src/main/assets/public/
 cd android && ./gradlew assembleVisualizerDebug
 ```
