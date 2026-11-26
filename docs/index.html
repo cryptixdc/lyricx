@@ -1,49 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LYRICX — Press Start to Feel the Music</title>
-<meta name="description" content="LYRICX — a retro arcade music universe. Discover lyrics, unlock worlds, and take the app with you.">
+<title>LYRICX — Enter the World of Music</title>
+<meta name="description" content="LYRICX — a curated retro arcade universe for English music discovery. Explore iconic tracks and choose your system.">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="fonts.css">
-<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
 
-<!-- CRT OVERLAY -->
 <div class="crt" aria-hidden="true"><span class="scan"></span><span class="vignette"></span></div>
 
-<!-- BOOT SCREEN -->
+<!-- BOOT -->
 <div class="boot" id="boot" aria-hidden="true">
-  <div class="boot-inner">
+  <div class="boot-box">
     <div class="boot-logo">LYRICX<span class="cursor">_</span></div>
     <div class="boot-lines" id="bootLines"></div>
     <div class="boot-bar"><i></i></div>
-    <p class="boot-hint">LOADING MUSIC WORLD…</p>
+    <p class="boot-hint">LOADING MUSIC UNIVERSE…</p>
   </div>
 </div>
 
 <!-- NAV -->
 <header class="hud">
   <nav class="hud-inner" aria-label="Main navigation">
-    <a class="hud-brand" href="#top">
-      <span class="pixel-logo" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <span>LYRICX</span>
-    </a>
+    <a class="hud-brand" href="#top"><span class="pixel-logo" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>LYRICX</span></a>
     <div class="hud-links" id="hudLinks">
       <a href="#top" class="active">HOME</a>
-      <a href="#explore">EXPLORE</a>
-      <a href="#artists">ARTISTS</a>
-      <a href="#playlists">PLAYLISTS</a>
+      <a href="#music">MUSIC</a>
+      <a href="#about">ABOUT</a>
       <a href="#download">DOWNLOAD</a>
     </div>
     <div class="hud-actions">
-      <button class="hud-search" id="searchJump" aria-label="Search" title="Search">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle light and dark theme" title="Toggle theme">
+        <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M19 5l-2 2M7 17l-2 2"/></svg>
       </button>
       <a href="https://github.com/cryptixdc/lyricx/releases/latest" class="start-btn magnetic">START ▶</a>
       <button class="hud-menu" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -55,143 +51,73 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="stars" id="stars" aria-hidden="true"></div>
+    <div class="particles" id="particles" aria-hidden="true"></div>
     <div class="hero-grid">
       <div class="hero-copy">
-        <p class="blink-label">● INSERT COIN — SYSTEM READY</p>
-        <h1 class="glitch" data-text="PRESS START">PRESS START</h1>
-        <h2 class="hero-sub">TO FEEL THE MUSIC</h2>
-        <p class="hero-lede">Every song has a story. Every lyric unlocks a new world.</p>
-
-        <div class="terminal" aria-label="System message">
-          <p><span class="prompt">&gt;</span> SYSTEM ONLINE<span class="cursor">_</span></p>
-          <p><span class="prompt">&gt;</span> MUSIC WORLD LOADED</p>
-          <p><span class="prompt">&gt;</span> WELCOME TO LYRICX.</p>
+        <p class="blink-label">● SYSTEM ONLINE — PLAYER 1 READY</p>
+        <h1 class="glitch" data-text="ENTER THE WORLD">ENTER THE WORLD</h1>
+        <h2 class="glitch" data-text="OF LYRICX">OF <span class="neon">LYRICX</span></h2>
+        <p class="hero-sub">YOUR MUSIC. YOUR UNIVERSE. YOUR NEXT LEVEL.</p>
+        <p class="hero-lede">A curated arcade of iconic English tracks. Discover a sound, unlock a feeling, press start again.</p>
+        <a href="#music" class="arcade-btn primary magnetic">START EXPLORING ▶</a>
+        <div class="terminal">
+          <p><span class="prompt">&gt;</span> LYRICX SYSTEM v1.0.0</p>
+          <p><span class="prompt">&gt;</span> MUSIC UNIVERSE LOADED<span class="cursor">_</span></p>
+          <p><span class="prompt">&gt;</span> READY PLAYER ONE</p>
         </div>
-
-        <div class="hero-actions">
-          <a href="#explore" class="arcade-btn primary magnetic blink-soft">START EXPLORING</a>
-          <a href="#download" class="arcade-btn ghost magnetic">GET THE APP</a>
-        </div>
-        <p class="hero-status">PLAYER 1 — READY &nbsp;·&nbsp; V1.0.0 &nbsp;·&nbsp; 60 FPS</p>
       </div>
-
       <div class="hero-machine">
         <div class="screen-frame">
           <div class="screen">
             <div class="screen-top"><span>LYRICX.EXE</span><span class="screen-dots">■ ■ ■</span></div>
             <div class="screen-body">
               <div class="big-logo glitch" data-text="LX">LX</div>
-              <div class="eq" id="eq" aria-hidden="true">
-                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-              </div>
-              <p class="screen-caption">NOW PLAYING : MINNALVALA</p>
+              <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <p class="screen-caption">NOW LOADING : THE MUSIC WORLD</p>
               <div class="screen-bar"><i></i></div>
             </div>
           </div>
         </div>
         <span class="pixel-badge b1">★ 8-BIT SOUL</span>
-        <span class="pixel-badge b2">YTM ONLY</span>
+        <span class="pixel-badge b2">ENGLISH EDITION</span>
       </div>
     </div>
   </section>
 
   <!-- TICKER -->
   <div class="ticker" aria-hidden="true"><div class="ticker-track">
-    <span>★ TRENDING NOW ★ NEW LYRICS EVERY DAY ★ MALAYALAM MODE ON ★ 20+ VISUAL STYLES ★ PRESS START TO FEEL THE MUSIC ★</span>
-    <span>★ TRENDING NOW ★ NEW LYRICS EVERY DAY ★ MALAYALAM MODE ON ★ 20+ VISUAL STYLES ★ PRESS START TO FEEL THE MUSIC ★</span>
+    <span>★ CURATED ENGLISH CLASSICS ★ NO FILLER. JUST ICONS. ★ PRESS START TO DISCOVER ★ 12 TRACKS. INFINITE FEELING. ★</span>
+    <span>★ CURATED ENGLISH CLASSICS ★ NO FILLER. JUST ICONS. ★ PRESS START TO DISCOVER ★ 12 TRACKS. INFINITE FEELING. ★</span>
   </div></div>
 
-  <!-- EXPLORE -->
-  <section id="explore" class="section">
+  <!-- MUSIC -->
+  <section id="music" class="section">
     <div class="section-head reveal">
-      <p class="tag">// LEVEL 01</p>
-      <h2>EXPLORE <span class="neon">LYRICS</span></h2>
-      <p>Select a mode. Enter your query. Unlock the words.</p>
+      <p class="tag">// LEVEL 01 — THE COLLECTION</p>
+      <h2>SELECT YOUR <span class="neon">SOUND</span></h2>
+      <p>Twelve curated English tracks. Real artwork. Official destinations.</p>
     </div>
-
-    <div class="panel reveal">
-      <div class="pixel-search">
-        <span class="prompt">&gt;</span>
-        <input id="lyricSearch" type="search" placeholder="TYPE HERE…" aria-label="Search lyrics">
-        <span class="cursor">_</span>
-      </div>
-      <div class="mode-tabs" role="tablist" aria-label="Search mode">
-        <button class="mode active" data-mode="song" role="tab" aria-selected="true">SEARCH SONG</button>
-        <button class="mode" data-mode="artist" role="tab" aria-selected="false">SEARCH ARTIST</button>
-        <button class="mode" data-mode="lyrics" role="tab" aria-selected="false">SEARCH LYRICS</button>
-      </div>
-      <div class="genre-row" id="genres">
-        <button class="genre active" data-genre="all">ALL</button>
-        <button class="genre" data-genre="malayalam">MALAYALAM</button>
-        <button class="genre" data-genre="english">ENGLISH</button>
-        <button class="genre" data-genre="chill">CHILL</button>
-        <button class="genre" data-genre="bollywood">BOLLYWOOD</button>
-      </div>
-      <div class="inventory" id="results" aria-live="polite"></div>
-    </div>
+    <div class="inventory" id="inventory"></div>
   </section>
 
-  <!-- TRENDING LEADERBOARD -->
-  <section id="playlists" class="section">
-    <div class="section-head reveal">
-      <p class="tag">// HIGH SCORES</p>
-      <h2>TRENDING <span class="neon">TRACKS</span></h2>
-      <p>The leaderboard of lyrics everyone is playing.</p>
-    </div>
-    <div class="leaderboard reveal">
-      <div class="lb-head"><span>RANK</span><span>TRACK / ARTIST</span><span>POPULARITY</span></div>
-      <div id="leaderboard"></div>
-      <p class="lb-foot">* SCORES RESET EVERY 24 HOURS — KEEP PLAYING.</p>
-    </div>
-  </section>
-
-  <!-- ARTISTS -->
-  <section id="artists" class="section">
-    <div class="section-head reveal">
-      <p class="tag">// CHARACTER SELECT</p>
-      <h2>FEATURED <span class="neon">ARTISTS</span></h2>
-      <p>Choose your player. Discover their world.</p>
-    </div>
-    <div class="roster reveal" id="roster"></div>
-  </section>
-
-  <!-- LYRICS RPG DIALOGUE -->
-  <section id="lyrics" class="section">
-    <div class="section-head reveal">
-      <p class="tag">// DIALOGUE MODE</p>
-      <h2>LYRICS <span class="neon">READER</span></h2>
-      <p>Read between the lines. Tap to highlight.</p>
-    </div>
-
-    <div class="dialogue reveal">
-      <div class="dialogue-top">
-        <div class="mini-art art-1"><span>L</span></div>
-        <div><h3 id="dTitle">MINNALVALA</h3><p id="dArtist">JAKES BEJOY · SID SRIRAM · SITHARA KRISHNAKUMAR</p></div>
-        <div class="dialogue-actions">
-          <button class="icon" id="copyLyrics" aria-label="Copy lyrics" title="COPY">
-            <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="1"/><path d="M5 15V5h8"/></svg>
-          </button>
-          <button class="icon" id="favLyrics" aria-label="Favourite" aria-pressed="false" title="FAVOURITE">
-            <svg viewBox="0 0 24 24"><path d="M12 20s-7-4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5-7 9-7 9Z"/></svg>
-          </button>
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="about-panel reveal">
+      <div class="about-deco" aria-hidden="true">
+        <div class="pixel-heart">♥</div>
+        <div class="pixel-bars"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="pixel-cube"></div>
+      </div>
+      <div class="about-copy">
+        <p class="tag">// ABOUT THIS WORLD</p>
+        <h2>MORE THAN<br>JUST <span class="neon">MUSIC.</span></h2>
+        <p class="about-text">LYRICX is a digital universe built for music lovers. Discover iconic English tracks, explore a unique retro-inspired experience and find your next favourite sound.</p>
+        <div class="info-box">
+          <p><span class="prompt">&gt;</span> GENRE : ENGLISH / POP / ALTERNATIVE</p>
+          <p><span class="prompt">&gt;</span> TRACKS : 12 CURATED</p>
+          <p><span class="prompt">&gt;</span> PLATFORMS : WIN · MAC · LINUX · ANDROID</p>
+          <p><span class="prompt">&gt;</span> STATUS : ONLINE<span class="cursor">_</span></p>
         </div>
-      </div>
-      <div class="dialogue-box">
-        <span class="corner tl"></span><span class="corner tr"></span>
-        <span class="corner bl"></span><span class="corner br"></span>
-        <div id="lyricLines">
-          <p>Neenjaya kaadhalin nodalil</p>
-          <p>Nilaavil ninnum varum</p>
-          <p class="active">▶ Minnalvala mand-arayil</p>
-          <p>Kaaririkkum njan thanithu</p>
-          <p>Nin sahavasam thedi</p>
-        </div>
-      </div>
-      <div class="track-controls">
-        <button id="prevTrack">◀ PREV TRACK</button>
-        <span id="trackCount">TRACK 01 / 03</span>
-        <button id="nextTrack">NEXT TRACK ▶</button>
       </div>
     </div>
   </section>
@@ -199,30 +125,35 @@
   <!-- DOWNLOAD -->
   <section id="download" class="section">
     <div class="section-head reveal">
-      <p class="tag">// TAKE IT WITH YOU</p>
-      <h2>DOWNLOAD <span class="neon">LYRICX</span></h2>
-      <p>One universe. Four platforms. Press start anywhere.</p>
+      <p class="tag">// SYSTEM SELECT</p>
+      <h2>CHOOSE YOUR <span class="neon">SYSTEM</span></h2>
+      <p>Pick your platform. Follow the official destination.</p>
     </div>
-    <div class="download-grid reveal">
-      <a class="dl-card" data-os="windows" href="https://github.com/cryptixdc/lyricx/releases/latest/download/LYRICX-Setup-1.0.0.exe">
-        <span class="dl-icon">▣</span><h3>WINDOWS</h3><p>64-BIT INSTALLER</p><span class="dl-btn">DOWNLOAD.EXE</span>
+    <div class="os-grid reveal">
+      <a class="os-card" href="https://www.microsoft.com/en-us/software-download/windows11" target="_blank" rel="noopener">
+        <img src="assets/os/windows.svg" alt="Windows logo">
+        <h3>WINDOWS</h3><p>WINDOWS 11</p>
+        <span class="os-btn">DOWNLOAD FOR WINDOWS</span>
       </a>
-      <a class="dl-card" data-os="mac" href="https://github.com/cryptixdc/lyricx/releases/latest/download/LYRICX-1.0.0-arm64.dmg">
-        <span class="dl-icon">◆</span><h3>MACOS</h3><p>APPLE SILICON + INTEL</p><span class="dl-btn">DOWNLOAD.DMG</span>
-        <span class="dl-sub" id="macIntel">INTEL VERSION ↗</span>
+      <a class="os-card" href="https://www.linux.org/pages/download/" target="_blank" rel="noopener">
+        <img src="assets/os/linux.svg" alt="Linux logo">
+        <h3>LINUX</h3><p>LINUX DISTRIBUTIONS</p>
+        <span class="os-btn">DOWNLOAD FOR LINUX</span>
       </a>
-      <a class="dl-card" data-os="linux" href="https://github.com/cryptixdc/lyricx/releases/latest/download/LYRICX-1.0.0-linux-x86_64.AppImage">
-        <span class="dl-icon">◈</span><h3>LINUX</h3><p>APPIMAGE + DEB</p><span class="dl-btn">DOWNLOAD.APP</span>
-        <span class="dl-sub" id="linuxDeb">GET .DEB ↗</span>
+      <a class="os-card" href="https://ubuntu.com/download/desktop" target="_blank" rel="noopener">
+        <img src="assets/os/ubuntu.svg" alt="Ubuntu logo">
+        <h3>UBUNTU</h3><p>UBUNTU DESKTOP</p>
+        <span class="os-btn">DOWNLOAD FOR UBUNTU</span>
       </a>
-      <a class="dl-card hot" data-os="android" href="https://github.com/cryptixdc/lyricx/releases/latest/download/LYRICX-1.0.0-android.apk">
-        <span class="dl-icon">▤</span><h3>ANDROID</h3><p>PHONE EDITION</p><span class="dl-btn">DOWNLOAD.APK</span>
+      <a class="os-card" href="https://www.apple.com/macos/" target="_blank" rel="noopener">
+        <img src="assets/os/apple.svg" alt="Apple logo">
+        <h3>MACOS</h3><p>APPLE MACINTOSH</p>
+        <span class="os-btn">DOWNLOAD FOR macOS</span>
       </a>
     </div>
-    <div class="dl-note reveal">
-      <span class="blink-label">● LATEST BUILD : V1.0.0</span>
-      <a href="https://github.com/cryptixdc/lyricx/releases" target="_blank" rel="noopener">VIEW ALL RELEASES ↗</a>
-      <span>YOUTUBE MUSIC ONLY · AGPL-3.0</span>
+    <div class="app-note reveal">
+      <span class="blink-label">● LOOKING FOR THE LYRICX APP?</span>
+      <a href="https://github.com/cryptixdc/lyricx/releases" target="_blank" rel="noopener">GET THE LYRICX INSTALLER FROM GITHUB RELEASES ↗</a>
     </div>
   </section>
 </main>
@@ -231,26 +162,12 @@
 <footer class="footer">
   <div class="footer-inner">
     <div>
-      <h2 class="glitch" data-text="GAME OVER?">GAME OVER?</h2>
-      <h3 class="neon">NAH. THE MUSIC NEVER ENDS.</h3>
+      <h2 class="glitch" data-text="THANKS FOR PLAYING.">THANKS FOR PLAYING.</h2>
+      <h3 class="neon">KEEP THE MUSIC ALIVE.</h3>
     </div>
     <div class="footer-grid">
-      <div>
-        <h4>LYRICX</h4>
-        <a href="#top">HOME</a><a href="#explore">EXPLORE</a><a href="#artists">ARTISTS</a><a href="#download">DOWNLOAD</a>
-      </div>
-      <div>
-        <h4>MORE</h4>
-        <a href="https://github.com/cryptixdc/lyricx" target="_blank" rel="noopener">SOURCE ↗</a>
-        <a href="https://github.com/cryptixdc/lyricx/releases" target="_blank" rel="noopener">RELEASES ↗</a>
-        <a href="mailto:hello@lyricx.app">CONTACT ↗</a>
-        <a href="#top">PRIVACY ↗</a>
-      </div>
-      <div>
-        <h4>FOLLOW</h4>
-        <a href="https://github.com/cryptixdc/lyricx" target="_blank" rel="noopener">GITHUB ↗</a>
-        <a href="https://cryptixdc.github.io/lyricx/" target="_blank" rel="noopener">WEBSITE ↗</a>
-      </div>
+      <div><h4>LYRICX</h4><a href="#top">HOME</a><a href="#music">MUSIC</a><a href="#download">DOWNLOADS</a><a href="#about">ABOUT</a></div>
+      <div><h4>LINKS</h4><a href="https://github.com/cryptixdc/lyricx" target="_blank" rel="noopener">GITHUB ↗</a><a href="https://cryptixdc.github.io/lyricx/" target="_blank" rel="noopener">WEBSITE ↗</a><a href="mailto:hello@lyricx.app">CONTACT ↗</a></div>
     </div>
   </div>
   <div class="footer-bottom">
@@ -260,6 +177,6 @@
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="app.js?v=4"></script>
+<script src="app.js?v=6"></script>
 </body>
 </html>
