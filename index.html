@@ -3,49 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LYRICX — Feel the Music. Live the Lyrics.</title>
-<meta name="description" content="LYRICX — a creative home for lyrics. Discover the words behind your favourite melodies.">
+<title>LYRICX — Press Start to Feel the Music</title>
+<meta name="description" content="LYRICX — a retro arcade music universe. Discover lyrics, unlock worlds, and take the app with you.">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<!-- decorative background -->
-<div class="ambient" aria-hidden="true">
-  <span class="orb orb-a"></span>
-  <span class="orb orb-b"></span>
-  <span class="orb orb-c"></span>
-  <span class="grain"></span>
+<!-- CRT OVERLAY -->
+<div class="crt" aria-hidden="true"><span class="scan"></span><span class="vignette"></span></div>
+
+<!-- BOOT SCREEN -->
+<div class="boot" id="boot" aria-hidden="true">
+  <div class="boot-inner">
+    <div class="boot-logo">LYRICX<span class="cursor">_</span></div>
+    <div class="boot-lines" id="bootLines"></div>
+    <div class="boot-bar"><i></i></div>
+    <p class="boot-hint">LOADING MUSIC WORLD…</p>
+  </div>
 </div>
 
-<!-- NAVIGATION -->
-<header class="nav-wrap">
-  <nav class="nav" aria-label="Main navigation">
-    <a class="brand" href="#top" aria-label="LYRICX home">
-      <img src="assets/logo.svg" alt="">
-      <span class="brand-word">LYRICX</span>
+<!-- NAV -->
+<header class="hud">
+  <nav class="hud-inner" aria-label="Main navigation">
+    <a class="hud-brand" href="#top">
+      <span class="pixel-logo" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span>LYRICX</span>
     </a>
-    <div class="nav-links" id="navLinks">
-      <a href="#top" class="active">Home</a>
-      <a href="#trending">Explore</a>
-      <a href="#artists">Artists</a>
-      <a href="#playlists">Playlists</a>
-      <a href="#experience">Lyrics</a>
-      <a href="#about">About</a>
+    <div class="hud-links" id="hudLinks">
+      <a href="#top" class="active">HOME</a>
+      <a href="#explore">EXPLORE</a>
+      <a href="#artists">ARTISTS</a>
+      <a href="#playlists">PLAYLISTS</a>
+      <a href="#download">DOWNLOAD</a>
     </div>
-    <div class="nav-actions">
-      <button class="icon-btn" id="searchJump" aria-label="Search lyrics" title="Search lyrics">
+    <div class="hud-actions">
+      <button class="hud-search" id="searchJump" aria-label="Search" title="Search">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
       </button>
-      <a class="nav-cta magnetic" href="https://github.com/cryptixdc/lyricx/releases/latest">Get the app</a>
-      <button class="avatar magnetic" aria-label="Profile" title="Profile">LX</button>
-      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span>
-      </button>
+      <a href="https://github.com/cryptixdc/lyricx/releases/latest" class="start-btn magnetic">START ▶</a>
+      <button class="hud-menu" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </nav>
 </header>
@@ -53,229 +54,208 @@
 <main id="top">
 
   <!-- HERO -->
-  <section class="hero reveal">
-    <div class="hero-copy">
-      <p class="eyebrow"><span class="dot"></span> A new way to listen</p>
-      <h1>FEEL THE MUSIC.<br><em>LIVE THE LYRICS.</em></h1>
-      <p class="hero-lede">Discover the words behind your favourite melodies. A quiet, beautiful space for the songs — and the meaning — you love.</p>
-      <div class="hero-actions">
-        <a href="#explore" class="btn primary magnetic">Explore Lyrics
-          <svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
-        </a>
-        <a href="#experience" class="btn ghost magnetic">See the experience</a>
-      </div>
-      <div class="hero-stats">
-        <div><strong>20+</strong><span>visual styles</span></div>
-        <div><strong>4</strong><span>languages</span></div>
-        <div><strong>∞</strong><span>lyrics to feel</span></div>
-      </div>
-    </div>
+  <section class="hero">
+    <div class="stars" id="stars" aria-hidden="true"></div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="blink-label">● INSERT COIN — SYSTEM READY</p>
+        <h1 class="glitch" data-text="PRESS START">PRESS START</h1>
+        <h2 class="hero-sub">TO FEEL THE MUSIC</h2>
+        <p class="hero-lede">Every song has a story. Every lyric unlocks a new world.</p>
 
-    <div class="hero-stage">
-      <span class="ring ring-one" aria-hidden="true"></span>
-      <span class="ring ring-two" aria-hidden="true"></span>
-      <div class="float-chip chip-top" aria-hidden="true">മലയാളം · MIDI · 4K</div>
-      <div class="float-chip chip-bottom" aria-hidden="true">now playing — 03:42</div>
+        <div class="terminal" aria-label="System message">
+          <p><span class="prompt">&gt;</span> SYSTEM ONLINE<span class="cursor">_</span></p>
+          <p><span class="prompt">&gt;</span> MUSIC WORLD LOADED</p>
+          <p><span class="prompt">&gt;</span> WELCOME TO LYRICX.</p>
+        </div>
 
-      <article class="featured-card">
-        <div class="art art-1"><span class="art-glyph">L</span><span class="art-shine"></span></div>
-        <div class="fc-body">
-          <span class="fc-tag">Featured lyric</span>
-          <h2>Minnalvala</h2>
-          <p>Jakes Bejoy · Sid Sriram · Sithara Krishnakumar</p>
-          <div class="wave" aria-hidden="true">
-            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-          </div>
-          <div class="fc-foot">
-            <button class="round-play magnetic" aria-label="Play featured song" data-play="Minnalvala">
-              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            </button>
-            <span>Listen &amp; follow along</span>
-            <span class="fc-time">3:58</span>
+        <div class="hero-actions">
+          <a href="#explore" class="arcade-btn primary magnetic blink-soft">START EXPLORING</a>
+          <a href="#download" class="arcade-btn ghost magnetic">GET THE APP</a>
+        </div>
+        <p class="hero-status">PLAYER 1 — READY &nbsp;·&nbsp; V1.0.0 &nbsp;·&nbsp; 60 FPS</p>
+      </div>
+
+      <div class="hero-machine">
+        <div class="screen-frame">
+          <div class="screen">
+            <div class="screen-top"><span>LYRICX.EXE</span><span class="screen-dots">■ ■ ■</span></div>
+            <div class="screen-body">
+              <div class="big-logo glitch" data-text="LX">LX</div>
+              <div class="eq" id="eq" aria-hidden="true">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+              <p class="screen-caption">NOW PLAYING : MINNALVALA</p>
+              <div class="screen-bar"><i></i></div>
+            </div>
           </div>
         </div>
-      </article>
+        <span class="pixel-badge b1">★ 8-BIT SOUL</span>
+        <span class="pixel-badge b2">YTM ONLY</span>
+      </div>
     </div>
   </section>
 
-  <!-- TRENDING / BENTO -->
-  <section id="trending" class="section">
-    <div class="section-head reveal">
-      <p class="eyebrow"><span class="dot"></span> What's moving</p>
-      <h2>Trending <span class="serif">lyrics</span></h2>
-      <p class="section-sub">The words everyone is searching for right now.</p>
-    </div>
-
-    <div class="bento">
-      <article class="tile tile-large reveal">
-        <div class="art art-2"><span class="art-glyph">M</span></div>
-        <div class="tile-body">
-          <span class="tile-kicker">Trending song</span>
-          <h3>Poomuthole</h3>
-          <p>Ranjin Raj &amp; Niranj Suresh</p>
-        </div>
-        <button class="tile-play magnetic" aria-label="Play Poomuthole" data-play="Poomuthole">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </button>
-      </article>
-
-      <article class="tile reveal">
-        <div class="art art-3"><span class="art-glyph">S</span></div>
-        <div class="tile-body">
-          <span class="tile-kicker">Popular artist</span>
-          <h3>Sid Sriram</h3>
-          <p>Voice of a thousand songs</p>
-        </div>
-        <span class="tile-arrow">↗</span>
-      </article>
-
-      <article class="tile reveal">
-        <div class="art art-4"><span class="art-glyph">K</span></div>
-        <div class="tile-body">
-          <span class="tile-kicker">Recently added</span>
-          <h3>Kaathirunnu Njaan</h3>
-          <p>M. Jayachandran · K.S. Chithra</p>
-        </div>
-        <span class="tile-arrow">↗</span>
-      </article>
-
-      <article class="tile tile-dark reveal" id="playlists">
-        <span class="tile-kicker">Most searched</span>
-        <div class="tagcloud">
-          <a href="#explore">malayalam love</a><a href="#explore">lofi rain</a><a href="#explore">vijay</a><a href="#explore">midnight</a><a href="#explore">onam</a>
-        </div>
-        <p class="tile-note">Updated every hour</p>
-      </article>
-    </div>
-  </section>
+  <!-- TICKER -->
+  <div class="ticker" aria-hidden="true"><div class="ticker-track">
+    <span>★ TRENDING NOW ★ NEW LYRICS EVERY DAY ★ MALAYALAM MODE ON ★ 20+ VISUAL STYLES ★ PRESS START TO FEEL THE MUSIC ★</span>
+    <span>★ TRENDING NOW ★ NEW LYRICS EVERY DAY ★ MALAYALAM MODE ON ★ 20+ VISUAL STYLES ★ PRESS START TO FEEL THE MUSIC ★</span>
+  </div></div>
 
   <!-- EXPLORE -->
   <section id="explore" class="section">
     <div class="section-head reveal">
-      <p class="eyebrow"><span class="dot"></span> Discover</p>
-      <h2>Find your <span class="serif">words</span></h2>
-      <p class="section-sub">Search a song, an artist, or a line you can't forget.</p>
+      <p class="tag">// LEVEL 01</p>
+      <h2>EXPLORE <span class="neon">LYRICS</span></h2>
+      <p>Select a mode. Enter your query. Unlock the words.</p>
     </div>
 
-    <div class="explore-panel reveal">
-      <div class="searchbar">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
-        <input id="lyricSearch" type="search" placeholder="Search songs, artists or lyrics…" aria-label="Search lyrics">
-        <kbd>/</kbd>
+    <div class="panel reveal">
+      <div class="pixel-search">
+        <span class="prompt">&gt;</span>
+        <input id="lyricSearch" type="search" placeholder="TYPE HERE…" aria-label="Search lyrics">
+        <span class="cursor">_</span>
       </div>
-
-      <div class="explore-tabs" role="tablist" aria-label="Search mode">
-        <button class="tab active" data-mode="song" role="tab" aria-selected="true">By song</button>
-        <button class="tab" data-mode="artist" role="tab" aria-selected="false">By artist</button>
-        <button class="tab" data-mode="lyrics" role="tab" aria-selected="false">By lyrics</button>
+      <div class="mode-tabs" role="tablist" aria-label="Search mode">
+        <button class="mode active" data-mode="song" role="tab" aria-selected="true">SEARCH SONG</button>
+        <button class="mode" data-mode="artist" role="tab" aria-selected="false">SEARCH ARTIST</button>
+        <button class="mode" data-mode="lyrics" role="tab" aria-selected="false">SEARCH LYRICS</button>
       </div>
-
-      <div class="filters" id="genreFilters">
-        <button class="filter active" data-genre="all">All</button>
-        <button class="filter" data-genre="malayalam">Malayalam</button>
-        <button class="filter" data-genre="english">English</button>
-        <button class="filter" data-genre="chill">Chill</button>
-        <button class="filter" data-genre="bollywood">Bollywood</button>
+      <div class="genre-row" id="genres">
+        <button class="genre active" data-genre="all">ALL</button>
+        <button class="genre" data-genre="malayalam">MALAYALAM</button>
+        <button class="genre" data-genre="english">ENGLISH</button>
+        <button class="genre" data-genre="chill">CHILL</button>
+        <button class="genre" data-genre="bollywood">BOLLYWOOD</button>
       </div>
-
-      <div class="results" id="results" aria-live="polite"></div>
+      <div class="inventory" id="results" aria-live="polite"></div>
     </div>
   </section>
 
-  <!-- FEATURED ARTIST -->
-  <section id="artists" class="section">
-    <div class="artist-panel reveal">
-      <div class="artist-portrait">
-        <span class="portrait-art art-5"><span class="portrait-initial">SS</span></span>
-        <span class="portrait-ring" aria-hidden="true"></span>
-        <span class="portrait-badge">Featured artist · 01</span>
-      </div>
-      <div class="artist-copy">
-        <p class="eyebrow"><span class="dot"></span> In the spotlight</p>
-        <h2>Sid <span class="serif">Sriram</span></h2>
-        <p class="artist-intro">A voice that turns a melody into a memory. From soulful Malayalam ballads to chart-topping anthems, his lyrics live in the space between heartbreak and hope.</p>
-        <div class="artist-songs">
-          <div><span>01</span><strong>Minnalvala</strong><em>Narivetta</em><button class="mini-play" data-play="Minnalvala" aria-label="Play">▸</button></div>
-          <div><span>02</span><strong>Varnajaalam</strong><em>Kalki</em><button class="mini-play" data-play="Varnajaalam" aria-label="Play">▸</button></div>
-          <div><span>03</span><strong>Kaantha</strong><em>Star</em><button class="mini-play" data-play="Kaantha" aria-label="Play">▸</button></div>
-        </div>
-        <a href="#explore" class="btn primary magnetic">Explore artist
-          <svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- LYRICS EXPERIENCE -->
-  <section id="experience" class="section">
+  <!-- TRENDING LEADERBOARD -->
+  <section id="playlists" class="section">
     <div class="section-head reveal">
-      <p class="eyebrow"><span class="dot"></span> The experience</p>
-      <h2>Read between the <span class="serif">lines</span></h2>
-      <p class="section-sub">A focused, beautiful place for the words — nothing else.</p>
+      <p class="tag">// HIGH SCORES</p>
+      <h2>TRENDING <span class="neon">TRACKS</span></h2>
+      <p>The leaderboard of lyrics everyone is playing.</p>
     </div>
-
-    <div class="lyrics-panel reveal">
-      <div class="lyrics-meta">
-        <div class="art art-1 small"><span class="art-glyph">L</span></div>
-        <div>
-          <h3>Minnalvala</h3>
-          <p>Jakes Bejoy · Sid Sriram · Sithara Krishnakumar</p>
-        </div>
-        <div class="lyric-actions">
-          <button class="icon-btn magnetic" id="copyLyrics" aria-label="Copy lyrics" title="Copy lyrics">
-            <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>
-          </button>
-          <button class="icon-btn magnetic" id="favLyrics" aria-label="Favourite lyrics" title="Favourite" aria-pressed="false">
-            <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9Z"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <div class="lyric-lines" id="lyricLines">
-        <p>Neenjaya kaadhalin nodalil</p>
-        <p>Nilaavil ninnum varum</p>
-        <p class="active">Minnalvala mand-arayil</p>
-        <p>Kaaririkkum njan thanithu</p>
-        <p>Nin sahavasam thedi</p>
-        <p class="faded">… Am I the one you wait for</p>
-      </div>
-
-      <div class="lyrics-foot"><span class="live-dot"></span> Synced with the music · tap a line to highlight</div>
+    <div class="leaderboard reveal">
+      <div class="lb-head"><span>RANK</span><span>TRACK / ARTIST</span><span>POPULARITY</span></div>
+      <div id="leaderboard"></div>
+      <p class="lb-foot">* SCORES RESET EVERY 24 HOURS — KEEP PLAYING.</p>
     </div>
   </section>
 
-  <!-- ABOUT / CTA -->
-  <section id="about" class="section">
-    <div class="closing reveal">
-      <p class="eyebrow"><span class="dot"></span> LYRICX</p>
-      <h2>Made for the way you <span class="serif">feel</span> music.</h2>
-      <p>Windows · macOS · Linux · Android. YouTube Music, beautiful visualizers, Malayalam at heart.</p>
-      <a href="https://github.com/cryptixdc/lyricx/releases/latest" class="btn dark magnetic">Download LYRICX
-        <svg viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 19h16"/></svg>
+  <!-- ARTISTS -->
+  <section id="artists" class="section">
+    <div class="section-head reveal">
+      <p class="tag">// CHARACTER SELECT</p>
+      <h2>FEATURED <span class="neon">ARTISTS</span></h2>
+      <p>Choose your player. Discover their world.</p>
+    </div>
+    <div class="roster reveal" id="roster"></div>
+  </section>
+
+  <!-- LYRICS RPG DIALOGUE -->
+  <section id="lyrics" class="section">
+    <div class="section-head reveal">
+      <p class="tag">// DIALOGUE MODE</p>
+      <h2>LYRICS <span class="neon">READER</span></h2>
+      <p>Read between the lines. Tap to highlight.</p>
+    </div>
+
+    <div class="dialogue reveal">
+      <div class="dialogue-top">
+        <div class="mini-art art-1"><span>L</span></div>
+        <div><h3 id="dTitle">MINNALVALA</h3><p id="dArtist">JAKES BEJOY · SID SRIRAM · SITHARA KRISHNAKUMAR</p></div>
+        <div class="dialogue-actions">
+          <button class="icon" id="copyLyrics" aria-label="Copy lyrics" title="COPY">
+            <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="1"/><path d="M5 15V5h8"/></svg>
+          </button>
+          <button class="icon" id="favLyrics" aria-label="Favourite" aria-pressed="false" title="FAVOURITE">
+            <svg viewBox="0 0 24 24"><path d="M12 20s-7-4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5-7 9-7 9Z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="dialogue-box">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div id="lyricLines">
+          <p>Neenjaya kaadhalin nodalil</p>
+          <p>Nilaavil ninnum varum</p>
+          <p class="active">▶ Minnalvala mand-arayil</p>
+          <p>Kaaririkkum njan thanithu</p>
+          <p>Nin sahavasam thedi</p>
+        </div>
+      </div>
+      <div class="track-controls">
+        <button id="prevTrack">◀ PREV TRACK</button>
+        <span id="trackCount">TRACK 01 / 03</span>
+        <button id="nextTrack">NEXT TRACK ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section id="download" class="section">
+    <div class="section-head reveal">
+      <p class="tag">// TAKE IT WITH YOU</p>
+      <h2>DOWNLOAD <span class="neon">LYRICX</span></h2>
+      <p>One universe. Four platforms. Press start anywhere.</p>
+    </div>
+    <div class="download-grid reveal">
+      <a class="dl-card" data-os="windows" href="https://github.com/cryptixdc/lyricx/releases/latest/download/LYRICX-Setup-1.0.0.exe">
+        <span class="dl-icon">▣</span><h3>WINDOWS</h3><p>64-BIT INSTALLER</p><span class="dl-btn">DOWNLOAD.EXE</span>
       </a>
+      <a class="dl-card" data-os="mac" href="https://github.com/cryptixdc/lyricx/releases/latest/download/LYRICX-1.0.0-arm64.dmg">
+        <span class="dl-icon">◆</span><h3>MACOS</h3><p>APPLE SILICON + INTEL</p><span class="dl-btn">DOWNLOAD.DMG</span>
+        <span class="dl-sub" id="macIntel">INTEL VERSION ↗</span>
+      </a>
+      <a class="dl-card" data-os="linux" href="https://github.com/cryptixdc/lyricx/releases/latest/download/LYRICX-1.0.0-linux-x86_64.AppImage">
+        <span class="dl-icon">◈</span><h3>LINUX</h3><p>APPIMAGE + DEB</p><span class="dl-btn">DOWNLOAD.APP</span>
+        <span class="dl-sub" id="linuxDeb">GET .DEB ↗</span>
+      </a>
+      <a class="dl-card hot" data-os="android" href="https://github.com/cryptixdc/lyricx/releases/latest/download/LYRICX-1.0.0-android.apk">
+        <span class="dl-icon">▤</span><h3>ANDROID</h3><p>PHONE EDITION</p><span class="dl-btn">DOWNLOAD.APK</span>
+      </a>
+    </div>
+    <div class="dl-note reveal">
+      <span class="blink-label">● LATEST BUILD : V1.0.0</span>
+      <a href="https://github.com/cryptixdc/lyricx/releases" target="_blank" rel="noopener">VIEW ALL RELEASES ↗</a>
+      <span>YOUTUBE MUSIC ONLY · AGPL-3.0</span>
     </div>
   </section>
 </main>
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-top">
-    <div class="footer-brand">
-      <a class="brand" href="#top"><img src="assets/logo.svg" alt=""><span class="brand-word">LYRICX</span></a>
-      <p>The words behind the music. Crafted with care.</p>
+  <div class="footer-inner">
+    <div>
+      <h2 class="glitch" data-text="GAME OVER?">GAME OVER?</h2>
+      <h3 class="neon">NAH. THE MUSIC NEVER ENDS.</h3>
     </div>
-    <div class="footer-links">
-      <div><h4>Explore</h4><a href="#trending">Trending</a><a href="#explore">Search</a><a href="#artists">Artists</a><a href="#playlists">Playlists</a></div>
-      <div><h4>Company</h4><a href="#about">About</a><a href="mailto:hello@lyricx.app">Contact</a><a href="#about">Privacy Policy</a><a href="https://github.com/cryptixdc/lyricx">Source</a></div>
+    <div class="footer-grid">
+      <div>
+        <h4>LYRICX</h4>
+        <a href="#top">HOME</a><a href="#explore">EXPLORE</a><a href="#artists">ARTISTS</a><a href="#download">DOWNLOAD</a>
+      </div>
+      <div>
+        <h4>MORE</h4>
+        <a href="https://github.com/cryptixdc/lyricx" target="_blank" rel="noopener">SOURCE ↗</a>
+        <a href="https://github.com/cryptixdc/lyricx/releases" target="_blank" rel="noopener">RELEASES ↗</a>
+        <a href="mailto:hello@lyricx.app">CONTACT ↗</a>
+        <a href="#top">PRIVACY ↗</a>
+      </div>
+      <div>
+        <h4>FOLLOW</h4>
+        <a href="https://github.com/cryptixdc/lyricx" target="_blank" rel="noopener">GITHUB ↗</a>
+        <a href="https://cryptixdc.github.io/lyricx/" target="_blank" rel="noopener">WEBSITE ↗</a>
+      </div>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© <span id="year"></span> LYRICX. All rights reserved.</span>
-    <div class="social">
-      <a href="https://github.com/cryptixdc/lyricx" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3-.3 6.1-1.5 6.1-6.8A5.2 5.2 0 0 0 19.9 4 4.9 4.9 0 0 0 19.8.6S18.7.2 16 2.2a15 15 0 0 0-7 0C6.3.2 5.2.6 5.2.6A4.9 4.9 0 0 0 5.1 4a5.2 5.2 0 0 0-1.4 3.7c0 5.3 3.1 6.5 6.1 6.8a3.4 3.4 0 0 0-.9 2.6V22"/></svg></a>
-      <a href="https://cryptixdc.github.io/lyricx/" aria-label="Website"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18Z"/></svg></a>
-      <a href="mailto:hello@lyricx.app" aria-label="Email"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
-    </div>
+    <span>© <span id="year"></span> LYRICX — ALL RIGHTS RESERVED.</span>
+    <button id="backTop">▲ BACK TO TOP</button>
   </div>
 </footer>
 
