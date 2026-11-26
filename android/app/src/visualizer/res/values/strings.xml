@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LYRICX Visualizer</string>
+    <string name="title_activity_main">LYRICX Visualizer</string>
+    <string name="vis_listener_label">LYRICX Visualizer — Spotify</string>
+</resources>

@@ -1,0 +1,131 @@
+name: Visualizer Edition Release
+
+on:
+  push:
+    tags:
+      - 'v*-visualizer'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag for the Visualizer edition'
+        required: true
+        default: 'v1.0.0-visualizer'
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: visualizer-release
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    name: Prepare release
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.tag.outputs.value }}
+    steps:
+      - name: Resolve tag
+        id: tag
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "value=${{ inputs.tag }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create release if missing
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          TAG="${{ steps.tag.outputs.value }}"
+          if ! gh release view "$TAG" --repo cryptixdc/lyricx >/dev/null 2>&1; then
+            gh release create "$TAG" --repo cryptixdc/lyricx --title "LYRICX Visualizer $TAG" \
+              --notes "Spotify-driven Visualizer edition: follows the track playing in another app and opens straight into the lyrics visualizer. Desktop loopback audio where available; Android uses playback timing."
+          fi
+
+  android:
+    name: Android APK
+    needs: prepare
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Copy visualizer web assets
+        run: |
+          mkdir -p android/app/src/main/assets/public
+          cp -R visualizer/. android/app/src/main/assets/public/
+
+      - name: Build Visualizer APK
+        working-directory: android
+        run: |
+          echo "sdk.dir=$ANDROID_HOME" > local.properties
+          chmod +x ./gradlew
+          ./gradlew assembleVisualizerDebug --no-daemon
+
+      - name: Upload APK
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          cp android/app/build/outputs/apk/visualizer/debug/app-visualizer-debug.apk LYRICX-VIS-1.0.0-android.apk
+          gh release upload "${{ needs.prepare.outputs.tag }}" LYRICX-VIS-1.0.0-android.apk --repo cryptixdc/lyricx --clobber
+
+  desktop:
+    name: Desktop ${{ matrix.label }}
+    needs: prepare
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            label: Windows
+            args: --win --x64
+          - os: macos-latest
+            label: macOS arm64
+            args: --mac --arm64
+          - os: macos-latest
+            label: macOS x64
+            args: --mac --x64
+          - os: ubuntu-latest
+            label: Linux
+            args: --linux --x64
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Package Visualizer edition
+        run: npx electron-builder --config electron-builder.visualizer.yml ${{ matrix.args }}
+
+      - name: Upload installers
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          for file in release-visualizer/LYRICX-VIS*; do
+            [ -f "$file" ] && gh release upload "${{ needs.prepare.outputs.tag }}" "$file" --repo cryptixdc/lyricx --clobber
+          done

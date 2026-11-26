@@ -1,0 +1,100 @@
+/* LYRICX Visualizer — retro arcade styling for the standalone Spotify edition. */
+:root {
+  --bg: #0b0b0f;
+  --surface: #15131f;
+  --surface2: #1d1a2b;
+  --text: #f3ebdd;
+  --muted: #9a92b5;
+  --purple: #925cff;
+  --neon: #c9a7ff;
+  --line: rgba(146, 92, 255, .38);
+  --shadow: 5px 5px 0 var(--purple);
+}
+html[data-theme="light"] {
+  --bg: #f3ebdd;
+  --surface: #fffdf8;
+  --surface2: #ede3d2;
+  --text: #121218;
+  --muted: #6b657c;
+  --purple: #6d28d9;
+  --neon: #7c3aed;
+  --line: rgba(109, 40, 217, .3);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Courier New', ui-monospace, monospace;
+  background-image:
+    linear-gradient(rgba(146, 92, 255, .07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(146, 92, 255, .07) 1px, transparent 1px);
+  background-size: 30px 30px;
+  transition: background-color .2s, color .2s;
+}
+.noise {
+  position: fixed; inset: 0; pointer-events: none; z-index: 20;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,.12) 0, rgba(0,0,0,.12) 1px, transparent 1px, transparent 3px);
+  opacity: .5;
+}
+html[data-theme="light"] .noise { background: repeating-linear-gradient(0deg, rgba(80,60,120,.06) 0, rgba(80,60,120,.06) 1px, transparent 1px, transparent 3px); }
+
+.topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  padding: 14px 22px; border-bottom: 2px solid var(--line); background: var(--surface);
+}
+.brand { display: flex; align-items: center; gap: 10px; font-family: 'Courier New', monospace; font-weight: 700; letter-spacing: 2px; }
+.brand .mark { display: grid; place-items: center; width: 30px; height: 30px; background: var(--purple); color: #fff; font-size: 11px; border: 2px solid var(--neon); }
+.brand small { font-size: 8px; color: var(--neon); letter-spacing: 1px; }
+.top-actions { display: flex; align-items: center; gap: 10px; }
+.status { font-size: 9px; letter-spacing: 1px; padding: 7px 9px; border: 2px solid var(--line); color: var(--neon); background: var(--surface2); white-space: nowrap; }
+.status[data-state="error"] { color: #ff8a8a; border-color: #ff8a8a; }
+.status[data-state="ok"] { color: #6ee7a0; border-color: #6ee7a0; }
+.icon-btn, select, .action {
+  font-family: inherit; font-size: 10px; letter-spacing: 1px; color: var(--text);
+  background: var(--surface2); border: 2px solid var(--line); padding: 8px 10px; cursor: pointer;
+}
+.icon-btn:hover, .action:hover { border-color: var(--purple); background: var(--surface); }
+select { max-width: 110px; }
+.action.primary { background: var(--purple); color: #fff; border-color: var(--neon); }
+[hidden] { display: none !important; }
+
+.stage { max-width: 1080px; margin: 0 auto; padding: 34px 22px 60px; }
+.visual-head { text-align: center; margin-bottom: 26px; }
+.eyebrow { color: var(--neon); font-size: 10px; letter-spacing: 2px; margin: 0 0 12px; }
+.visual-head h1 { font-size: clamp(26px, 5vw, 52px); margin: 0 0 10px; text-transform: uppercase; text-shadow: 3px 3px 0 var(--purple); }
+.lede { color: var(--muted); font-size: 13px; margin: 0 auto; max-width: 620px; line-height: 1.7; }
+
+.screen { border: 3px solid var(--purple); background: var(--surface); box-shadow: var(--shadow), 0 0 32px rgba(146,92,255,.16); }
+.screen-top { display: flex; justify-content: space-between; padding: 9px 12px; border-bottom: 2px solid var(--line); font-size: 9px; letter-spacing: 2px; color: var(--neon); }
+.screen-body { position: relative; height: clamp(260px, 44vw, 440px); background: radial-gradient(circle at 50% 30%, #2a1850, #0a0a10 76%); overflow: hidden; }
+html[data-theme="light"] .screen-body { background: radial-gradient(circle at 50% 30%, #e5d9ff, #f3ebdd 76%); }
+#visualizer { display: block; width: 100%; height: 100%; }
+.screen-overlay { position: absolute; left: 18px; bottom: 30px; right: 18px; text-align: center; pointer-events: none; }
+.track { font-size: clamp(13px, 2.4vw, 20px); font-weight: 700; margin: 0 0 6px; color: #f3ebdd; letter-spacing: 1px; }
+.artist { font-size: 9px; letter-spacing: 2px; margin: 0; color: #b9a9dd; }
+html[data-theme="light"] .track { color: #121218; text-shadow: none; }
+html[data-theme="light"] .artist { color: #5b4a84; }
+.progress { position: absolute; left: 0; right: 0; bottom: 0; height: 8px; border-top: 2px solid var(--purple); background: var(--surface2); }
+.progress i { display: block; height: 100%; width: 0; background: var(--neon); box-shadow: 0 0 10px var(--neon); transition: width .25s linear; }
+
+.lyric-box { margin-top: 24px; border: 2px solid var(--line); background: var(--surface2); padding: 20px 22px; text-align: center; min-height: 150px; }
+.lyric-label { font-size: 9px; letter-spacing: 2px; color: var(--neon); margin: 0 0 14px; }
+.lyric-active { font-size: clamp(15px, 2.6vw, 24px); line-height: 1.5; margin: 0 0 12px; color: var(--text); }
+.lyric-next { font-size: 11px; line-height: 1.9; color: var(--muted); }
+.lyric-next p { margin: 0; }
+
+.controls { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+.mode { font-size: 9px; letter-spacing: 1px; color: var(--muted); }
+.hint { text-align: center; color: var(--muted); font-size: 11px; line-height: 1.7; margin-top: 18px; }
+
+@media (max-width: 600px) {
+  .topbar { flex-direction: column; align-items: stretch; }
+  .top-actions { justify-content: space-between; }
+  .stage { padding: 24px 14px 44px; }
+  .screen-body { height: 280px; }
+  .lyric-box { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

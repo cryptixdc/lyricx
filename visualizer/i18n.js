@@ -1,0 +1,99 @@
+/* LYRICX Visualizer — UI strings for the standalone Spotify edition. */
+(function (global) {
+    'use strict';
+
+    var messages = {
+        en: {
+            eyebrow: '// SPOTIFY → LYRICX',
+            headline: 'LYRICX VISUALIZER',
+            lede: 'Play a song in Spotify. This screen follows it and opens the visualizer.',
+            booting: 'BOOTING…',
+            waiting: 'WAITING FOR SPOTIFY',
+            listening: 'FOLLOWING SPOTIFY',
+            error: 'SOURCE OFFLINE',
+            lyrics: '// LYRICS',
+            noLyrics: 'No lyrics found for this track.',
+            waitingLyrics: 'Start playing a song in Spotify.',
+            permission: 'ALLOW NOTIFICATION ACCESS',
+            retry: 'REFRESH LYRICS',
+            modeTiming: 'MODE: PLAYBACK TIMING',
+            modeLoopback: 'MODE: DESKTOP LOOPBACK',
+            modeNoAudio: 'MODE: PLAYBACK TIMING (no loopback device)',
+            modeAndroid: 'MODE: ANDROID PLAYBACK TIMING',
+            hintDesktop: 'Desktop: install the Now Playing service to follow Spotify’s track and progress. Loopback audio is used when a loopback input device is available.',
+            hintAndroid: 'Android: grant notification access once, then leave Spotify playing in the background.',
+            hintMissing: 'Lyrics come from an online service and are looked up again on every track change.'
+        },
+        ml: {
+            eyebrow: '// SPOTIFY → LYRICX',
+            headline: 'LYRICX വിഷ്വലൈസർ',
+            lede: 'Spotify-ൽ ഒരു ഗാനം പ്ലേ ചെയ്യുക. ഈ സ്ക്രീൻ അതിനെ പിന്തുടർന്ന് വിഷ്വലൈസർ തുറക്കും.',
+            booting: 'ലോഡ് ചെയ്യുന്നു…',
+            waiting: 'SPOTIFY-നായി കാത്തിരിക്കുന്നു',
+            listening: 'SPOTIFY പിന്തുടരുന്നു',
+            error: 'ഉറവിടം ഓഫ്‍ലൈൻ',
+            lyrics: '// വരികൾ',
+            noLyrics: 'ഈ ഗാനത്തിന് വരികൾ കണ്ടെത്തിയില്ല.',
+            waitingLyrics: 'Spotify-ൽ ഒരു ഗാനം പ്ലേ ചെയ്യുക.',
+            permission: 'അറിയിപ്പ് ആക്സസ് അനുവദിക്കുക',
+            retry: 'വരികൾ പുതുക്കുക',
+            modeTiming: 'മോഡ്: പ്ലേബാക്ക് ടൈമിംഗ്',
+            modeLoopback: 'മോഡ്: ഡെസ്ക്ടോപ്പ് ലൂപ്പ്ബാക്ക്',
+            modeNoAudio: 'മോഡ്: പ്ലേബാക്ക് ടൈമിംഗ് (ലൂപ്പ്ബാക്ക് ഇല്ല)',
+            modeAndroid: 'മോഡ്: Android പ്ലേബാക്ക് ടൈമിംഗ്',
+            hintDesktop: 'ഡെസ്ക്ടോപ്പ്: Spotify-ന്റെ ഗാനവും പുരോഗതിയും പിന്തുടരാൻ Now Playing സേവനം ഇൻസ്റ്റാൾ ചെയ്യുക.',
+            hintAndroid: 'Android: ഒരു തവണ അറിയിപ്പ് ആക്സസ് അനുവദിക്കുക, പിന്നീട് Spotify പശ്ചാത്തലത്തിൽ പ്ലേ ചെയ്യാൻ വിടുക.',
+            hintMissing: 'വരികൾ ഓൺലൈൻ സേവനത്തിൽ നിന്നാണ്; ഓരോ ഗാനമാറ്റത്തിലും വീണ്ടും ലഭ്യമാക്കുന്നു.'
+        },
+        'zh-CN': {
+            eyebrow: '// SPOTIFY → LYRICX',
+            headline: 'LYRICX 可视化器',
+            lede: '在 Spotify 播放歌曲，此画面会跟随它并进入可视化器。',
+            booting: '启动中…',
+            waiting: '等待 Spotify',
+            listening: '正在跟随 Spotify',
+            error: '音源离线',
+            lyrics: '// 歌词',
+            noLyrics: '未找到这首歌的歌词。',
+            waitingLyrics: '开始在 Spotify 播放歌曲。',
+            permission: '允许通知访问权限',
+            retry: '刷新歌词',
+            modeTiming: '模式：播放计时',
+            modeLoopback: '模式：桌面回环音频',
+            modeNoAudio: '模式：播放计时（无回环设备）',
+            modeAndroid: '模式：Android 播放计时',
+            hintDesktop: '桌面端：安装 Now Playing 服务以跟随 Spotify 的曲目和进度；有回环输入设备时使用真实音频。',
+            hintAndroid: 'Android：授权通知访问一次，然后让 Spotify 在后台播放。',
+            hintMissing: '歌词来自在线服务，每次切歌都会重新获取。'
+        },
+        in: {
+            eyebrow: '// SPOTIFY → LYRICX',
+            headline: 'LYRICX VISUALIZER',
+            lede: 'Putar lagu di Spotify. Layar ini mengikutinya dan membuka visualizer.',
+            booting: 'MEMUAT…',
+            waiting: 'MENUNGGU SPOTIFY',
+            listening: 'MENGIKUTI SPOTIFY',
+            error: 'SUMBER OFFLINE',
+            lyrics: '// LIRIK',
+            noLyrics: 'Lirik tidak ditemukan untuk lagu ini.',
+            waitingLyrics: 'Mulai putar lagu di Spotify.',
+            permission: 'IZINKAN AKSES NOTIFIKASI',
+            retry: 'MUAT ULANG LIRIK',
+            modeTiming: 'MODE: WAKTU PUTAR',
+            modeLoopback: 'MODE: LOOPBACK DESKTOP',
+            modeNoAudio: 'MODE: WAKTU PUTAR (tanpa loopback)',
+            modeAndroid: 'MODE: WAKTU PUTAR ANDROID',
+            hintDesktop: 'Desktop: pasang layanan Now Playing untuk mengikuti lagu dan progres Spotify.',
+            hintAndroid: 'Android: berikan akses notifikasi sekali, lalu biarkan Spotify diputar di latar belakang.',
+            hintMissing: 'Lirik berasal dari layanan online dan dimuat ulang setiap pergantian lagu.'
+        }
+    };
+
+    global.LXVisI18n = {
+        languages: ['en', 'ml', 'zh-CN', 'in'],
+        translate: function (language, key) {
+            var table = messages[language] || messages.en;
+            return table[key] !== undefined ? table[key] : messages.en[key] !== undefined ? messages.en[key] : key;
+        }
+    };
+})(typeof window !== 'undefined' ? window : globalThis);

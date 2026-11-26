@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LYRICX Visualizer</title>
+<meta name="description" content="LYRICX Visualizer — follow Spotify in the background and go straight to the lyrics visualizer.">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="noise" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="brand"><span class="mark" aria-hidden="true">LX</span><span>LYRICX</span><small>VISUALIZER</small></div>
+  <div class="top-actions">
+    <span class="status" id="status">BOOTING…</span>
+    <button id="themeBtn" class="icon-btn" aria-label="Toggle theme" title="Toggle theme">◐</button>
+    <select id="langSelect" aria-label="Language">
+      <option value="en">EN</option>
+      <option value="ml">മലയാളം</option>
+      <option value="zh-CN">中文</option>
+      <option value="in">ID</option>
+    </select>
+  </div>
+</header>
+
+<main class="stage">
+  <section class="visual-panel">
+    <div class="visual-head">
+      <p class="eyebrow" id="eyebrow">// SPOTIFY → LYRICX</p>
+      <h1 id="headline">LYRICX VISUALIZER</h1>
+      <p class="lede" id="lede">Play a song in Spotify. This screen follows it and opens the visualizer.</p>
+    </div>
+
+    <div class="screen">
+      <div class="screen-top"><span id="screenTitle">LYRICX.VIS</span><span class="dots" aria-hidden="true">■ ■ ■</span></div>
+      <div class="screen-body">
+        <canvas id="visualizer" aria-label="Audio visualizer"></canvas>
+        <div class="screen-overlay">
+          <p class="track" id="trackTitle">—</p>
+          <p class="artist" id="trackArtist">—</p>
+        </div>
+        <div class="progress"><i id="progressBar"></i></div>
+      </div>
+    </div>
+
+    <div class="lyric-box">
+      <p class="lyric-label" id="lyricLabel">// LYRICS</p>
+      <p class="lyric-active" id="lyricActive">—</p>
+      <div class="lyric-next" id="lyricNext"></div>
+    </div>
+
+    <div class="controls">
+      <button id="permissionBtn" class="action primary" hidden>ALLOW NOTIFICATION ACCESS</button>
+      <button id="retryBtn" class="action">REFRESH LYRICS</button>
+      <span class="mode" id="modeLabel">MODE: —</span>
+    </div>
+    <p class="hint" id="hint"></p>
+  </section>
+</main>
+
+<script src="i18n.js"></script>
+<script src="lrc.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

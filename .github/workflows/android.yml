@@ -40,11 +40,11 @@ jobs:
         run: |
           echo "sdk.dir=$ANDROID_HOME" > local.properties
           chmod +x ./gradlew
-          ./gradlew assembleDebug --no-daemon
+          ./gradlew assembleYtmDebug --no-daemon
 
       - name: Publish APK to release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cp android/app/build/outputs/apk/debug/app-debug.apk LYRICX-1.0.0-android.apk
+          cp android/app/build/outputs/apk/ytm/debug/app-ytm-debug.apk LYRICX-1.0.0-android.apk
           gh release upload v1.0.0 LYRICX-1.0.0-android.apk --repo cryptixdc/lyricx --clobber

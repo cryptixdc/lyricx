@@ -22,6 +22,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    // Two independently installable editions: YouTube Music (unchanged) and the Spotify visualizer.
+    flavorDimensions 'edition'
+    productFlavors {
+        ytm {
+            dimension 'edition'
+        }
+        visualizer {
+            dimension 'edition'
+            applicationId 'top.izuna.lyricx.visualizer'
+        }
+    }
 }
 
 repositories {

@@ -1,0 +1,44 @@
+# Visualizer (Spotify) edition packaging — separate from the YouTube-Music-only LYRICX build.
+appId: top.izuna.lyricx.visualizer
+productName: LYRICX Visualizer
+extraMetadata:
+  main: electron/visualizer/main.cjs
+files:
+  - visualizer/**/*
+  - electron/visualizer/**/*
+  - package.json
+  - "!node_modules/**"
+directories:
+  output: release-visualizer
+win:
+  target:
+    - nsis
+  icon: build/icon.png
+  artifactName: LYRICX-VIS-Setup-${version}.${ext}
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+mac:
+  target:
+    - target: dmg
+      arch:
+        - x64
+        - arm64
+    - target: zip
+      arch:
+        - x64
+        - arm64
+  icon: build/icon.png
+  artifactName: LYRICX-VIS-${version}-${arch}.${ext}
+linux:
+  target:
+    - AppImage
+    - deb
+  icon: build/icon.png
+  category: AudioVideo
+  executableName: lyricx-visualizer
+  artifactName: LYRICX-VIS-${version}-linux-${arch}.${ext}
+publish:
+  provider: github
+  owner: cryptixdc
+  repo: lyricx
