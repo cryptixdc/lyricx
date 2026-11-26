@@ -1,182 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LYRICX — Enter the World of Music</title>
-<meta name="description" content="LYRICX — a curated retro arcade universe for English music discovery. Explore iconic tracks and choose your system.">
-<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="fonts.css">
-<link rel="stylesheet" href="styles.css?v=7">
+<title>LYRICX has moved</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://cryptixdc.github.io/">
+<meta http-equiv="refresh" content="0; url=https://cryptixdc.github.io/">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0c0c0c;color:#f3ebdd;font-family:ui-monospace,Consolas,monospace;text-align:center;padding:24px}
+  .box{border:3px solid #925cff;background:#121212;padding:34px 30px;max-width:460px;box-shadow:8px 8px 0 rgba(146,92,255,.3)}
+  h1{font-size:22px;letter-spacing:2px;margin:0 0 14px;color:#c9a7ff}
+  p{font-size:13px;line-height:1.8;color:#a99fc4;margin:0 0 20px}
+  a{display:inline-block;background:#925cff;color:#fff;border:2px solid #c9a7ff;padding:13px 18px;font-size:12px;text-decoration:none;letter-spacing:1px}
+  a:hover{background:#c9a7ff;color:#121212}
+  .url{font-size:11px;color:#777;margin-top:16px}
+</style>
+<script>location.replace('https://cryptixdc.github.io/');</script>
 </head>
 <body>
-
-<div class="crt" aria-hidden="true"><span class="scan"></span><span class="vignette"></span></div>
-
-<!-- BOOT -->
-<div class="boot" id="boot" aria-hidden="true">
-  <div class="boot-box">
-    <div class="boot-logo">LYRICX<span class="cursor">_</span></div>
-    <div class="boot-lines" id="bootLines"></div>
-    <div class="boot-bar"><i></i></div>
-    <p class="boot-hint">LOADING MUSIC UNIVERSE…</p>
+  <div class="box">
+    <h1>LYRICX HAS MOVED</h1>
+    <p>The old site is retired. The new LYRICX universe lives at the root address.</p>
+    <a href="https://cryptixdc.github.io/">GO TO LYRICX ▶</a>
+    <p class="url">https://cryptixdc.github.io/</p>
   </div>
-</div>
-
-<!-- NAV -->
-<header class="hud">
-  <nav class="hud-inner" aria-label="Main navigation">
-    <a class="hud-brand" href="#top"><span class="pixel-logo" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>LYRICX</span></a>
-    <div class="hud-links" id="hudLinks">
-      <a href="#top" class="active">HOME</a>
-      <a href="#music">MUSIC</a>
-      <a href="#about">ABOUT</a>
-      <a href="#download">DOWNLOAD</a>
-    </div>
-    <div class="hud-actions">
-      <button class="theme-btn" id="themeBtn" aria-label="Toggle light and dark theme" title="Toggle theme">
-        <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"/></svg>
-        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M19 5l-2 2M7 17l-2 2"/></svg>
-      </button>
-      <a href="https://github.com/cryptixdc/lyricx/releases/latest" class="start-btn magnetic">START ▶</a>
-      <button class="hud-menu" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    </div>
-  </nav>
-</header>
-
-<main id="top">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="particles" id="particles" aria-hidden="true"></div>
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <p class="blink-label">● SYSTEM ONLINE — PLAYER 1 READY</p>
-        <h1 class="glitch" data-text="ENTER THE WORLD">ENTER THE WORLD</h1>
-        <h2 class="glitch" data-text="OF LYRICX">OF <span class="neon">LYRICX</span></h2>
-        <p class="hero-sub">YOUR MUSIC. YOUR UNIVERSE. YOUR NEXT LEVEL.</p>
-        <p class="hero-lede">A curated arcade of iconic English tracks. Discover a sound, unlock a feeling, press start again.</p>
-        <a href="#music" class="arcade-btn primary magnetic">START EXPLORING ▶</a>
-        <div class="terminal">
-          <p><span class="prompt">&gt;</span> LYRICX SYSTEM v1.0.0</p>
-          <p><span class="prompt">&gt;</span> MUSIC UNIVERSE LOADED<span class="cursor">_</span></p>
-          <p><span class="prompt">&gt;</span> READY PLAYER ONE</p>
-        </div>
-      </div>
-      <div class="hero-machine">
-        <div class="screen-frame">
-          <div class="screen">
-            <div class="screen-top"><span>LYRICX.EXE</span><span class="screen-dots">■ ■ ■</span></div>
-            <div class="screen-body">
-              <div class="big-logo glitch" data-text="LX">LX</div>
-              <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-              <p class="screen-caption">NOW LOADING : THE MUSIC WORLD</p>
-              <div class="screen-bar"><i></i></div>
-            </div>
-          </div>
-        </div>
-        <span class="pixel-badge b1">★ 8-BIT SOUL</span>
-        <span class="pixel-badge b2">ENGLISH EDITION</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- TICKER -->
-  <div class="ticker" aria-hidden="true"><div class="ticker-track">
-    <span>★ CURATED ENGLISH CLASSICS ★ NO FILLER. JUST ICONS. ★ PRESS START TO DISCOVER ★ 12 TRACKS. INFINITE FEELING. ★</span>
-    <span>★ CURATED ENGLISH CLASSICS ★ NO FILLER. JUST ICONS. ★ PRESS START TO DISCOVER ★ 12 TRACKS. INFINITE FEELING. ★</span>
-  </div></div>
-
-  <!-- MUSIC -->
-  <section id="music" class="section">
-    <div class="section-head reveal">
-      <p class="tag">// LEVEL 01 — THE COLLECTION</p>
-      <h2>SELECT YOUR <span class="neon">SOUND</span></h2>
-      <p>Twelve curated English tracks. Real artwork. Official destinations.</p>
-    </div>
-    <div class="inventory" id="inventory"></div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="section">
-    <div class="about-panel reveal">
-      <div class="about-deco" aria-hidden="true">
-        <div class="pixel-heart">♥</div>
-        <div class="pixel-bars"><i></i><i></i><i></i><i></i><i></i></div>
-        <div class="pixel-cube"></div>
-      </div>
-      <div class="about-copy">
-        <p class="tag">// ABOUT THIS WORLD</p>
-        <h2>MORE THAN<br>JUST <span class="neon">MUSIC.</span></h2>
-        <p class="about-text">LYRICX is a digital universe built for music lovers. Discover iconic English tracks, explore a unique retro-inspired experience and find your next favourite sound.</p>
-        <div class="info-box">
-          <p><span class="prompt">&gt;</span> GENRE : ENGLISH / POP / ALTERNATIVE</p>
-          <p><span class="prompt">&gt;</span> TRACKS : 12 CURATED</p>
-          <p><span class="prompt">&gt;</span> PLATFORMS : WIN · MAC · LINUX · ANDROID</p>
-          <p><span class="prompt">&gt;</span> STATUS : ONLINE<span class="cursor">_</span></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DOWNLOAD -->
-  <section id="download" class="section">
-    <div class="section-head reveal">
-      <p class="tag">// SYSTEM SELECT</p>
-      <h2>CHOOSE YOUR <span class="neon">SYSTEM</span></h2>
-      <p>Pick your platform. Follow the official destination.</p>
-    </div>
-    <div class="os-grid reveal">
-      <a class="os-card" href="https://www.microsoft.com/en-us/software-download/windows11" target="_blank" rel="noopener">
-        <img src="assets/os/windows.svg" alt="Windows logo">
-        <h3>WINDOWS</h3><p>WINDOWS 11</p>
-        <span class="os-btn">DOWNLOAD FOR WINDOWS</span>
-      </a>
-      <a class="os-card" href="https://www.linux.org/pages/download/" target="_blank" rel="noopener">
-        <img src="assets/os/linux.svg" alt="Linux logo">
-        <h3>LINUX</h3><p>LINUX DISTRIBUTIONS</p>
-        <span class="os-btn">DOWNLOAD FOR LINUX</span>
-      </a>
-      <a class="os-card" href="https://ubuntu.com/download/desktop" target="_blank" rel="noopener">
-        <img src="assets/os/ubuntu.svg" alt="Ubuntu logo">
-        <h3>UBUNTU</h3><p>UBUNTU DESKTOP</p>
-        <span class="os-btn">DOWNLOAD FOR UBUNTU</span>
-      </a>
-      <a class="os-card" href="https://www.apple.com/macos/" target="_blank" rel="noopener">
-        <img src="assets/os/apple.svg" alt="Apple logo">
-        <h3>MACOS</h3><p>APPLE MACINTOSH</p>
-        <span class="os-btn">DOWNLOAD FOR macOS</span>
-      </a>
-    </div>
-    <div class="app-note reveal">
-      <span class="blink-label">● LOOKING FOR THE LYRICX APP?</span>
-      <a href="https://github.com/cryptixdc/lyricx/releases" target="_blank" rel="noopener">GET THE LYRICX INSTALLER FROM GITHUB RELEASES ↗</a>
-    </div>
-  </section>
-</main>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div>
-      <h2 class="glitch" data-text="THANKS FOR PLAYING.">THANKS FOR PLAYING.</h2>
-      <h3 class="neon">KEEP THE MUSIC ALIVE.</h3>
-    </div>
-    <div class="footer-grid">
-      <div><h4>LYRICX</h4><a href="#top">HOME</a><a href="#music">MUSIC</a><a href="#download">DOWNLOADS</a><a href="#about">ABOUT</a></div>
-      <div><h4>LINKS</h4><a href="https://github.com/cryptixdc/lyricx" target="_blank" rel="noopener">GITHUB ↗</a><a href="https://cryptixdc.github.io/lyricx/" target="_blank" rel="noopener">WEBSITE ↗</a><a href="mailto:hello@lyricx.app">CONTACT ↗</a></div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© <span id="year"></span> LYRICX — ALL RIGHTS RESERVED.</span>
-    <button id="backTop">▲ BACK TO TOP</button>
-  </div>
-</footer>
-
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="app.js?v=7"></script>
 </body>
 </html>
