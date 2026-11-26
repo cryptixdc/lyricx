@@ -15,7 +15,7 @@ A beautiful, AI-themed lyric player for the desktop — built around **YouTube M
 | [<img src="docs/assets/apple.svg" width="34" alt="macOS"><br>**macOS**<br><sub>Apple Silicon & Intel</sub>](../../releases/latest) | [<img src="docs/assets/windows.svg" width="32" alt="Windows"><br>**Windows**<br><sub>64-bit installer</sub>](../../releases/latest) | [<img src="docs/assets/linux.svg" width="34" alt="Linux"><br>**Linux**<br><sub>AppImage & .deb</sub>](../../releases/latest) | [<img src="docs/assets/os/android.svg" width="30" alt="Android"><br>**Android**<br><sub>APK sideload</sub>](https://github.com/cryptixdc/lyricx/releases/download/v1.0.0/LYRICX-1.0.0-android.apk) |
 |:---:|:---:|:---:|:---:|
 
-**[Download the latest release →](../../releases/latest)** · **[Visit the website →](https://cryptixdc.github.io/)**
+**[Download the latest release →](../../releases/latest)** · **[Visit the website →](https://lyricxy.github.io/)**
 
 </div>
 
@@ -59,7 +59,7 @@ A second, co-installable build that follows whatever is playing in Spotify and o
 | Linux | `LYRICX-VIS-1.0.0-linux-x86_64.AppImage`, `*.deb` |
 | Android | `LYRICX-VIS-1.0.0-android.apk` |
 
-Downloads live on the [Visualizer release](../../releases/tag/v1.0.0-visualizer) and on the [website](https://cryptixdc.github.io/download.html#visualizer).
+Downloads live on the [Visualizer release](../../releases/tag/v1.0.0-visualizer) and on the [website](https://lyricxy.github.io/download.html#visualizer).
 
 - **Android:** grant notification access once; the app reads Spotify's media session in the background and uses playback timing for the visualizer (Android blocks cross-app audio capture).
 - **Desktop:** follows Spotify through the local [Now Playing](https://github.com/Widdit/now-playing-service/) service, uses real loopback audio when a loopback input device exists, and otherwise follows playback timing. macOS loopback needs a virtual device such as BlackHole.
