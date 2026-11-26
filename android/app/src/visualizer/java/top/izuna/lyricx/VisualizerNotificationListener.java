@@ -2,9 +2,9 @@ package top.izuna.lyricx;
 
 import android.content.ComponentName;
 import android.content.Context;
+import android.media.MediaMetadata;
 import android.media.session.MediaController;
 import android.media.session.MediaSessionManager;
-import android.media.session.MediaMetadata;
 import android.media.session.PlaybackState;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
