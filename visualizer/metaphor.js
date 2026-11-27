@@ -120,6 +120,21 @@
         var lines = [];
         var current = '';
         words.forEach(function (word) {
+            // Break a token that cannot fit on its own (unspaced scripts, URLs).
+            if (ctx.measureText(word).width > maxWidth) {
+                if (current) { lines.push(current); current = ''; }
+                var chunk = '';
+                Array.from(word).forEach(function (character) {
+                    if (ctx.measureText(chunk + character).width > maxWidth && chunk) {
+                        lines.push(chunk);
+                        chunk = character;
+                    } else {
+                        chunk += character;
+                    }
+                });
+                current = chunk;
+                return;
+            }
             var candidate = current ? current + ' ' + word : word;
             if (ctx.measureText(candidate).width > maxWidth && current) {
                 lines.push(current);
@@ -129,7 +144,7 @@
             }
         });
         if (current) lines.push(current);
-        return lines.slice(0, 2);
+        return lines.slice(0, 3);
     }
 
     // Draw the active lyric as ink metaballs, halftone and grain with camera cuts.
@@ -197,7 +212,7 @@
         // Lyric text with hard camera cuts and keyword colours.
         var active = index >= 0 ? lines[index] : null;
         if (active) {
-            var fontSize = Math.max(22 * dpr, Math.min(80 * dpr, w / 15)) * shot.scale;
+            var fontSize = Math.max(22 * dpr, Math.min(80 * dpr, w / 15));
             ctx.save();
             ctx.translate(w * (0.5 + shot.dx * 0.5), h * (0.48 + shot.dy * 0.5));
             ctx.scale(shot.scale, shot.scale);

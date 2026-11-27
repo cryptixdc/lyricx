@@ -158,6 +158,7 @@
             if (keyOf(song) === trackKey) {
                 lyrics = parsed;
                 renderLyrics();
+                drawStill();
             }
         }).catch(function (error) {
             lastError = String(error && error.message || error || 'lyrics lookup failed');
@@ -181,6 +182,7 @@
         renderStatus();
         renderTrack();
         renderLyrics();
+        drawStill();
         if (changed) loadLyrics(next, false);
     }
 
@@ -277,6 +279,29 @@
         return out;
     }
 
+    // One-shot frame for prefers-reduced-motion: no RAF, but lyrics are still drawn.
+    function drawStill() {
+        if (!reducedMotion) return;
+        var theme = document.documentElement.getAttribute('data-theme');
+        if (bgContext && metaphor) {
+            metaphor.drawBackground(bgContext, { mode: backgroundMode, theme: theme, stamp: 0 });
+        }
+        if (style === 'metaphor' && metaphor) {
+            metaphor.drawMetaphor(context, {
+                lines: lyrics,
+                activeIndex: lrc.activeLineIndex(lyrics, positionMs),
+                positionMs: positionMs,
+                level: 0.15,
+                theme: theme,
+                flip: false,
+                stamp: 0,
+                dpr: window.devicePixelRatio || 1
+            });
+        } else {
+            drawBars(timingLevels(0));
+        }
+    }
+
     function frame(now) {
         if (document.hidden) {
             window.requestAnimationFrame(frame);
@@ -336,24 +361,28 @@
         var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', next);
         try { localStorage.setItem('lyricx-vis-theme', next); } catch (error) { /* storage may be disabled */ }
+        drawStill();
     });
 
     $('langSelect').addEventListener('change', function (event) {
         language = event.target.value;
         try { localStorage.setItem('lyricx-vis-language', language); } catch (error) { /* storage may be disabled */ }
         applyTexts();
+        drawStill();
     });
 
     $('styleSelect').addEventListener('change', function (event) {
         style = event.target.value === 'classic' ? 'classic' : 'metaphor';
         try { localStorage.setItem('lyricx-vis-style', style); } catch (error) { /* storage may be disabled */ }
         applyTexts();
+        drawStill();
     });
 
     $('bgSelect').addEventListener('change', function (event) {
         backgroundMode = event.target.value;
         try { localStorage.setItem('lyricx-vis-background', backgroundMode); } catch (error) { /* storage may be disabled */ }
         applyTexts();
+        drawStill();
     });
 
     $('retryBtn').addEventListener('click', function () { if (track) loadLyrics(track, true); });
@@ -368,17 +397,7 @@
     if (!reducedMotion) {
         window.requestAnimationFrame(frame);
     } else {
-        if (bgContext && metaphor) {
-            metaphor.drawBackground(bgContext, { mode: backgroundMode, theme: document.documentElement.getAttribute('data-theme'), stamp: 0 });
-            if (style === 'metaphor') {
-                metaphor.drawMetaphor(context, {
-                    lines: lyrics, activeIndex: -1, positionMs: 0, level: 0.15,
-                    theme: document.documentElement.getAttribute('data-theme'), flip: false, stamp: 0,
-                    dpr: window.devicePixelRatio || 1
-                });
-            }
-        }
-        drawBars(timingLevels(0));
+        drawStill();
     }
 
     if (isAndroid) {
