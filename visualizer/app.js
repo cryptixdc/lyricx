@@ -390,7 +390,7 @@
         Promise.resolve(androidBridge.requestPermission()).catch(function () { /* system UI handles the result */ });
     });
 
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', function () { resizeCanvas(); drawStill(); });
     resizeCanvas();
     applyTexts();
 
