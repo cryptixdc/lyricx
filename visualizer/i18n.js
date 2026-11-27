@@ -22,7 +22,13 @@
             modeAndroid: 'MODE: ANDROID PLAYBACK TIMING',
             hintDesktop: 'Desktop: install the Now Playing service to follow Spotify’s track and progress. Loopback audio is used when a loopback input device is available.',
             hintAndroid: 'Android: grant notification access once, then leave Spotify playing in the background.',
-            hintMissing: 'Lyrics come from an online service and are looked up again on every track change.'
+            hintMissing: 'Lyrics come from an online service and are looked up again on every track change.',
+            styleMetaphor: 'METAPHOR LYRIC',
+            styleClassic: 'CLASSIC BARS',
+            bgFluid: 'FLUID',
+            bgAurora: 'AURORA',
+            bgGrid: 'GRID',
+            metaphorNote: 'Metaphor uses ink metaballs, halftone, grain and hard camera cuts — the same lyric look as the YouTube Music edition.'
         },
         ml: {
             eyebrow: '// SPOTIFY → LYRICX',
@@ -43,7 +49,13 @@
             modeAndroid: 'മോഡ്: Android പ്ലേബാക്ക് ടൈമിംഗ്',
             hintDesktop: 'ഡെസ്ക്ടോപ്പ്: Spotify-ന്റെ ഗാനവും പുരോഗതിയും പിന്തുടരാൻ Now Playing സേവനം ഇൻസ്റ്റാൾ ചെയ്യുക.',
             hintAndroid: 'Android: ഒരു തവണ അറിയിപ്പ് ആക്സസ് അനുവദിക്കുക, പിന്നീട് Spotify പശ്ചാത്തലത്തിൽ പ്ലേ ചെയ്യാൻ വിടുക.',
-            hintMissing: 'വരികൾ ഓൺലൈൻ സേവനത്തിൽ നിന്നാണ്; ഓരോ ഗാനമാറ്റത്തിലും വീണ്ടും ലഭ്യമാക്കുന്നു.'
+            hintMissing: 'വരികൾ ഓൺലൈൻ സേവനത്തിൽ നിന്നാണ്; ഓരോ ഗാനമാറ്റത്തിലും വീണ്ടും ലഭ്യമാക്കുന്നു.',
+            styleMetaphor: 'മെറ്റഫർ വരികൾ',
+            styleClassic: 'ക്ലാസിക് ബാറുകൾ',
+            bgFluid: 'ദ്രാവകം',
+            bgAurora: 'ധ്രുവജ്യോതി',
+            bgGrid: 'ഗ്രിഡ്',
+            metaphorNote: 'മെറ്റഫറിൽ മഷി മെറ്റബോളുകൾ, ഹാൾഫ്ടോൺ, ധാന്യം, കടുത്ത ക്യാമറ കട്ടുകൾ ഉപയോഗിക്കുന്നു — YouTube Music പതിപ്പിലെ അതേ വരി രൂപം.'
         },
         'zh-CN': {
             eyebrow: '// SPOTIFY → LYRICX',
@@ -64,7 +76,13 @@
             modeAndroid: '模式：Android 播放计时',
             hintDesktop: '桌面端：安装 Now Playing 服务以跟随 Spotify 的曲目和进度；有回环输入设备时使用真实音频。',
             hintAndroid: 'Android：授权通知访问一次，然后让 Spotify 在后台播放。',
-            hintMissing: '歌词来自在线服务，每次切歌都会重新获取。'
+            hintMissing: '歌词来自在线服务，每次切歌都会重新获取。',
+            styleMetaphor: '隐喻歌词',
+            styleClassic: '经典频谱',
+            bgFluid: '流体',
+            bgAurora: '极光',
+            bgGrid: '网格',
+            metaphorNote: '隐喻使用墨色融球、半调网点、颗粒和硬切镜头——与 YouTube Music 版本的歌词样式一致。'
         },
         in: {
             eyebrow: '// SPOTIFY → LYRICX',
@@ -85,7 +103,13 @@
             modeAndroid: 'MODE: WAKTU PUTAR ANDROID',
             hintDesktop: 'Desktop: pasang layanan Now Playing untuk mengikuti lagu dan progres Spotify.',
             hintAndroid: 'Android: berikan akses notifikasi sekali, lalu biarkan Spotify diputar di latar belakang.',
-            hintMissing: 'Lirik berasal dari layanan online dan dimuat ulang setiap pergantian lagu.'
+            hintMissing: 'Lirik berasal dari layanan online dan dimuat ulang setiap pergantian lagu.',
+            styleMetaphor: 'LIRIK METAFOR',
+            styleClassic: 'BATANG KLASIK',
+            bgFluid: 'CAIR',
+            bgAurora: 'AURORA',
+            bgGrid: 'GRID',
+            metaphorNote: 'Metaphor memakai metaball tinta, halftone, butiran, dan potongan kamera tajam — tampilan lirik yang sama seperti edisi YouTube Music.'
         }
     };
 

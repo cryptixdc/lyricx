@@ -69,8 +69,13 @@ select { max-width: 110px; }
 .screen-top { display: flex; justify-content: space-between; padding: 9px 12px; border-bottom: 2px solid var(--line); font-size: 9px; letter-spacing: 2px; color: var(--neon); }
 .screen-body { position: relative; height: clamp(260px, 44vw, 440px); background: radial-gradient(circle at 50% 30%, #2a1850, #0a0a10 76%); overflow: hidden; }
 html[data-theme="light"] .screen-body { background: radial-gradient(circle at 50% 30%, #e5d9ff, #f3ebdd 76%); }
-#visualizer { display: block; width: 100%; height: 100%; }
-.screen-overlay { position: absolute; left: 18px; bottom: 30px; right: 18px; text-align: center; pointer-events: none; }
+#background { position: absolute; inset: 0; width: 100%; height: 100%; }
+#visualizer { position: relative; z-index: 1; display: block; width: 100%; height: 100%; }
+.screen-overlay { position: absolute; z-index: 2; left: 18px; bottom: 30px; right: 18px; text-align: center; pointer-events: none; }
+body.metaphor .lyric-box { display: none; }
+body.metaphor .screen-overlay { opacity: .9; }
+body.metaphor .progress { z-index: 3; }
+.control-label { font-size: 8px; color: var(--neon); letter-spacing: 1px; }
 .track { font-size: clamp(13px, 2.4vw, 20px); font-weight: 700; margin: 0 0 6px; color: #f3ebdd; letter-spacing: 1px; }
 .artist { font-size: 9px; letter-spacing: 2px; margin: 0; color: #b9a9dd; }
 html[data-theme="light"] .track { color: #121218; text-shadow: none; }

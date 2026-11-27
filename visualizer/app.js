@@ -25,16 +25,26 @@
     var audio = null;
     var loopbackActive = false;
     var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var metaphor = window.LXVisMetaphor || null;
     var canvas = $('visualizer');
     var context = canvas.getContext('2d');
+    var bgCanvas = $('background');
+    var bgContext = bgCanvas ? bgCanvas.getContext('2d') : null;
     var bars = 48;
     var frameSkip = 0;
+    var currentLevels = null;
+    var style = 'metaphor';
+    var backgroundMode = 'fluid';
 
     try { language = localStorage.getItem('lyricx-vis-language') || 'en'; } catch (error) { language = 'en'; }
     if (i18n.languages.indexOf(language) === -1) language = 'en';
     try {
         var savedTheme = localStorage.getItem('lyricx-vis-theme');
         if (savedTheme === 'light' || savedTheme === 'dark') document.documentElement.setAttribute('data-theme', savedTheme);
+        var savedStyle = localStorage.getItem('lyricx-vis-style');
+        if (savedStyle === 'metaphor' || savedStyle === 'classic') style = savedStyle;
+        var savedBackground = localStorage.getItem('lyricx-vis-background');
+        if (savedBackground === 'fluid' || savedBackground === 'aurora' || savedBackground === 'grid') backgroundMode = savedBackground;
     } catch (error) { /* storage may be disabled */ }
 
     function t(key) { return i18n.translate(language, key); }
@@ -46,7 +56,16 @@
         $('lyricLabel').textContent = t('lyrics');
         $('retryBtn').textContent = t('retry');
         $('permissionBtn').textContent = t('permission');
-        $('hint').textContent = isAndroid ? t('hintAndroid') : t('hintDesktop');
+        $('hint').textContent = (isAndroid ? t('hintAndroid') : t('hintDesktop'))
+            + (style === 'metaphor' ? ' ' + t('metaphorNote') : '');
+        $('styleSelect').querySelector('option[value="metaphor"]').textContent = t('styleMetaphor');
+        $('styleSelect').querySelector('option[value="classic"]').textContent = t('styleClassic');
+        $('bgSelect').querySelector('option[value="fluid"]').textContent = t('bgFluid');
+        $('bgSelect').querySelector('option[value="aurora"]').textContent = t('bgAurora');
+        $('bgSelect').querySelector('option[value="grid"]').textContent = t('bgGrid');
+        $('styleSelect').value = style;
+        $('bgSelect').value = backgroundMode;
+        document.body.classList.toggle('metaphor', style === 'metaphor');
         $('langSelect').value = language;
         renderStatus();
         renderMode();
@@ -220,6 +239,10 @@
         var rect = canvas.getBoundingClientRect();
         canvas.width = Math.max(1, Math.floor(rect.width * ratio));
         canvas.height = Math.max(1, Math.floor(rect.height * ratio));
+        if (bgCanvas) {
+            bgCanvas.width = canvas.width;
+            bgCanvas.height = canvas.height;
+        }
     }
 
     function drawBars(levels) {
@@ -274,7 +297,35 @@
                 }
                 if (levels.every(function (level) { return level === 0; })) levels = null;
             }
-            drawBars(levels || timingLevels(now));
+            currentLevels = levels;
+            if (bgContext && metaphor) {
+                metaphor.drawBackground(bgContext, {
+                    mode: backgroundMode,
+                    theme: document.documentElement.getAttribute('data-theme'),
+                    stamp: now
+                });
+            }
+            if (style === 'metaphor' && metaphor) {
+                var average = 0;
+                if (levels) {
+                    levels.forEach(function (value) { average += value; });
+                    average /= levels.length;
+                } else {
+                    average = playing ? 0.45 : 0.12;
+                }
+                metaphor.drawMetaphor(context, {
+                    lines: lyrics,
+                    activeIndex: lrc.activeLineIndex(lyrics, positionMs),
+                    positionMs: positionMs,
+                    level: average,
+                    theme: document.documentElement.getAttribute('data-theme'),
+                    flip: false,
+                    stamp: now,
+                    dpr: window.devicePixelRatio || 1
+                });
+            } else {
+                drawBars(levels || timingLevels(now));
+            }
             renderTrack();
             renderLyrics();
         }
@@ -293,6 +344,18 @@
         applyTexts();
     });
 
+    $('styleSelect').addEventListener('change', function (event) {
+        style = event.target.value === 'classic' ? 'classic' : 'metaphor';
+        try { localStorage.setItem('lyricx-vis-style', style); } catch (error) { /* storage may be disabled */ }
+        applyTexts();
+    });
+
+    $('bgSelect').addEventListener('change', function (event) {
+        backgroundMode = event.target.value;
+        try { localStorage.setItem('lyricx-vis-background', backgroundMode); } catch (error) { /* storage may be disabled */ }
+        applyTexts();
+    });
+
     $('retryBtn').addEventListener('click', function () { if (track) loadLyrics(track, true); });
     $('permissionBtn').addEventListener('click', function () {
         Promise.resolve(androidBridge.requestPermission()).catch(function () { /* system UI handles the result */ });
@@ -302,8 +365,21 @@
     resizeCanvas();
     applyTexts();
 
-    if (!reducedMotion) window.requestAnimationFrame(frame);
-    else drawBars(timingLevels(0));
+    if (!reducedMotion) {
+        window.requestAnimationFrame(frame);
+    } else {
+        if (bgContext && metaphor) {
+            metaphor.drawBackground(bgContext, { mode: backgroundMode, theme: document.documentElement.getAttribute('data-theme'), stamp: 0 });
+            if (style === 'metaphor') {
+                metaphor.drawMetaphor(context, {
+                    lines: lyrics, activeIndex: -1, positionMs: 0, level: 0.15,
+                    theme: document.documentElement.getAttribute('data-theme'), flip: false, stamp: 0,
+                    dpr: window.devicePixelRatio || 1
+                });
+            }
+        }
+        drawBars(timingLevels(0));
+    }
 
     if (isAndroid) {
         Promise.resolve(androidBridge.isListening()).then(function (value) {

@@ -36,6 +36,7 @@
     <div class="screen">
       <div class="screen-top"><span id="screenTitle">LYRICX.VIS</span><span class="dots" aria-hidden="true">■ ■ ■</span></div>
       <div class="screen-body">
+        <canvas id="background" aria-hidden="true"></canvas>
         <canvas id="visualizer" aria-label="Audio visualizer"></canvas>
         <div class="screen-overlay">
           <p class="track" id="trackTitle">—</p>
@@ -54,6 +55,15 @@
     <div class="controls">
       <button id="permissionBtn" class="action primary" hidden>ALLOW NOTIFICATION ACCESS</button>
       <button id="retryBtn" class="action">REFRESH LYRICS</button>
+      <select id="styleSelect" aria-label="Lyric style" title="Lyric style">
+        <option value="metaphor">METAPHOR</option>
+        <option value="classic">CLASSIC</option>
+      </select>
+      <select id="bgSelect" aria-label="Animated background" title="Animated background">
+        <option value="fluid">FLUID</option>
+        <option value="aurora">AURORA</option>
+        <option value="grid">GRID</option>
+      </select>
       <span class="mode" id="modeLabel">MODE: —</span>
     </div>
     <p class="hint" id="hint"></p>
@@ -62,6 +72,7 @@
 
 <script src="i18n.js"></script>
 <script src="lrc.js"></script>
+<script src="metaphor.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

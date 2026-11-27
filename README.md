@@ -81,6 +81,7 @@ Get them from the [Visualizer release](../../releases/tag/v1.0.0-visualizer) or 
 
 - **Android:** grant notification access once. A native media-session listener reads Spotify's track metadata; the visualizer follows playback timing because Android does not allow one app to capture another app's audio.
 - **Desktop:** follows Spotify through the local [Now Playing](https://github.com/Widdit/now-playing-service/) service (`ws://localhost:9863/api/ws/lyric`). When a loopback input device exists, the visualizer uses real system audio; otherwise it follows playback timing. macOS loopback needs a virtual device such as BlackHole.
+- **Lyric styles:** the same **Metaphor** look as the YouTube Music edition — ink metaballs, halftone, grain, keyword colours, and hard camera cuts over animated backgrounds (fluid, aurora, or grid). Switch to **Classic bars** at any time.
 - **Lyrics:** looked up online from LRCLIB on every track change. This edition has no offline lyrics cache.
 - **Languages:** English, Malayalam, Simplified Chinese, and Indonesian.
 
